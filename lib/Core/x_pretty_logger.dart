@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum LogType { error, warning, success, response }
 
-class Logger {
+class XLogger {
   /// ASCII for ESCAPE (ESC key on your keyboard)
   static const String _ansiEsc = '\x1b[';
 

@@ -1,17 +1,18 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:android_id/android_id.dart';
-import 'package:baseX/Core/index.dart';
-import 'package:baseX/translation/label_util.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+import 'package:baseX/Core/index.dart';
+import 'package:baseX/translation/label_util.dart';
 
 class XController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Logger.info('XController is initialized.');
+    XLogger.info('XController is initialized.');
     platformSetup();
   }
 

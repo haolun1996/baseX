@@ -1,6 +1,6 @@
 part of api_service;
 
-class LoggerInterceptors extends Interceptor with InterceptorMixin {
+class XLoggerInterceptors extends Interceptor with InterceptorMixin {
   // var _cache = <Uri, Response>{};
 
   /// Request on header
@@ -14,35 +14,35 @@ class LoggerInterceptors extends Interceptor with InterceptorMixin {
       options.headers.remove('headerType');
       options.headers.addAll(header);
     }
-    Logger.reqHead('START REQUEST');
-    Logger.reqBody('║');
-    Logger.reqBody('╟ METHOD: ${options.method.toUpperCase()}');
-    Logger.reqBody('╟ BASEURL: ${options.baseUrl}');
-    Logger.reqBody('╟ PATH: ${options.path}');
-    Logger.reqBody('║');
-    Logger.reqBody('╟ ########## HEADER ##########');
+    XLogger.reqHead('START REQUEST');
+    XLogger.reqBody('║');
+    XLogger.reqBody('╟ METHOD: ${options.method.toUpperCase()}');
+    XLogger.reqBody('╟ BASEURL: ${options.baseUrl}');
+    XLogger.reqBody('╟ PATH: ${options.path}');
+    XLogger.reqBody('║');
+    XLogger.reqBody('╟ ########## HEADER ##########');
     if (options.headers.isNotEmpty) {
-      options.headers.forEach((k, v) => Logger.reqBody('║ $k: $v'));
+      options.headers.forEach((k, v) => XLogger.reqBody('║ $k: $v'));
     } else {
-      Logger.reqBody('║ NO HEADER');
+      XLogger.reqBody('║ NO HEADER');
     }
-    Logger.reqBody('╟ ########## HEADER ##########');
-    Logger.reqBody('║');
+    XLogger.reqBody('╟ ########## HEADER ##########');
+    XLogger.reqBody('║');
     if (options.method.toUpperCase() == 'GET') {
-      Logger.reqBody('╟ QUERY PARAM: ${options.queryParameters.toString()}');
+      XLogger.reqBody('╟ QUERY PARAM: ${options.queryParameters.toString()}');
     }
-    Logger.reqBody('║');
-    Logger.reqBody('╟ ########## BODY ##########');
+    XLogger.reqBody('║');
+    XLogger.reqBody('╟ ########## BODY ##########');
     if (options.data != null) {
       final Map<String, dynamic> bodyMap = Map<String, dynamic>.fromEntries(options.data.fields);
-      Logger.reqBody('║ ${bodyMap.toString()}');
+      XLogger.reqBody('║ ${bodyMap.toString()}');
     } else {
-      Logger.reqBody('║ NO BODY');
+      XLogger.reqBody('║ NO BODY');
     }
-    Logger.reqBody('╟ ########## BODY ##########');
+    XLogger.reqBody('╟ ########## BODY ##########');
 
-    Logger.reqBody('║ ');
-    Logger.reqTail(' END REQUEST ');
+    XLogger.reqBody('║ ');
+    XLogger.reqTail(' END REQUEST ');
 
     return super.onRequest(options, handler);
   }
@@ -50,19 +50,19 @@ class LoggerInterceptors extends Interceptor with InterceptorMixin {
   /// Request on error will throw custom Exception Error
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    Logger.errorHead('START ERROR');
-    Logger.errorBody('║');
-    Logger.errorBody('╟ RESPONSE STATUS CODE: ${err.response?.statusCode}');
-    Logger.errorBody('╟ SERVER STATUS MESSAGE: ${err.response?.statusMessage}');
-    Logger.errorBody('╟ RAW DATA: ${err.response?.data}');
+    XLogger.errorHead('START ERROR');
+    XLogger.errorBody('║');
+    XLogger.errorBody('╟ RESPONSE STATUS CODE: ${err.response?.statusCode}');
+    XLogger.errorBody('╟ SERVER STATUS MESSAGE: ${err.response?.statusMessage}');
+    XLogger.errorBody('╟ RAW DATA: ${err.response?.data}');
     // if (err.response?.data != null)
     //   print('ERROR_KEY : ${err.response?.data['error_key']}');
     if (err.response?.statusCode == 422) {
-      Logger.errorBody('╟ ERROR ON STATUS CODE: 422');
-      Logger.errorBody('║ ${err.response?.data['message']}');
+      XLogger.errorBody('╟ ERROR ON STATUS CODE: 422');
+      XLogger.errorBody('║ ${err.response?.data['message']}');
     }
-    Logger.errorBody('║');
-    Logger.errorTail(' END ERROR ');
+    XLogger.errorBody('║');
+    XLogger.errorTail(' END ERROR ');
     return super.onError(err, handler);
   }
 
@@ -71,19 +71,19 @@ class LoggerInterceptors extends Interceptor with InterceptorMixin {
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     if (response.data.containsKey('code') && baseConstant.success200) {
       if (response.data['code'] > 200) {
-        Logger.errorHead('START ERROR');
-        Logger.errorBody('║');
-        Logger.errorBody('╟ RESPONSE STATUS CODE: ${response.data['code']}');
-        Logger.errorBody('╟ SERVER STATUS MESSAGE: ${response.data['message']}');
-        Logger.errorBody('╟ RAW DATA: ${response.data}');
+        XLogger.errorHead('START ERROR');
+        XLogger.errorBody('║');
+        XLogger.errorBody('╟ RESPONSE STATUS CODE: ${response.data['code']}');
+        XLogger.errorBody('╟ SERVER STATUS MESSAGE: ${response.data['message']}');
+        XLogger.errorBody('╟ RAW DATA: ${response.data}');
         // if (err.response?.data != null)
         //   print('ERROR_KEY : ${err.response?.data['error_key']}');
         if (response.data['code'] == 422) {
-          Logger.errorBody('╟ ERROR ON STATUS CODE: 422');
-          Logger.errorBody('║ ${response.data['message']}');
+          XLogger.errorBody('╟ ERROR ON STATUS CODE: 422');
+          XLogger.errorBody('║ ${response.data['message']}');
         }
-        Logger.errorBody('║');
-        Logger.errorTail(' END ERROR ');
+        XLogger.errorBody('║');
+        XLogger.errorTail(' END ERROR ');
 
         return handler.reject(
           onErrorProcess(
@@ -94,12 +94,12 @@ class LoggerInterceptors extends Interceptor with InterceptorMixin {
         );
       }
     }
-    Logger.resHead('START RESPONSE');
-    Logger.resBody('║');
-    Logger.resBody('╟ Response: ${response.data}');
-    Logger.resBody('╟ Status Code: ${response.data['code']}');
-    Logger.resBody('║');
-    Logger.resTail(' END RESPONSE ');
+    XLogger.resHead('START RESPONSE');
+    XLogger.resBody('║');
+    XLogger.resBody('╟ Response: ${response.data}');
+    XLogger.resBody('╟ Status Code: ${response.data['code']}');
+    XLogger.resBody('║');
+    XLogger.resTail(' END RESPONSE ');
 
     return handler.next(response);
   }

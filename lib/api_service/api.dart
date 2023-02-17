@@ -35,13 +35,13 @@ class ApiXService {
       _dio.options.baseUrl = baseConstant.baseUrl;
     }
 
-    _dio.interceptors.addAll([LoggerInterceptors(), ApiInterceptors()]);
+    _dio.interceptors.addAll([XLoggerInterceptors(), ApiInterceptors()]);
 
     if (customHttp != null) {
       _setBaseXHttp(customHttp);
     }
 
-    Logger.info('Api initialzed with (${_dio.options.baseUrl}) endpoint.');
+    XLogger.info('Api initialzed with (${_dio.options.baseUrl}) endpoint.');
   }
 
   /// [get] request
@@ -288,7 +288,7 @@ class ApiXService {
               'statusCode': -99999,
               'message': '$exception -  ${err.stackTrace}',
             };
-            Logger.error(err.stackTrace);
+            XLogger.error(err.stackTrace);
           } else {
             exec = {
               'statusCode': -99999,
