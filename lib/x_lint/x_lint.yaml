@@ -1,0 +1,53 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    avoid_print: false
+    prefer_single_quotes: true
+    prefer_const_constructors: false
+    prefer_typing_uninitialized_variables: false
+    prefer_const_literals_to_create_immutables: false
+    prefer_final_fields: false
+    prefer_const_constructors_in_immutables: false
+    prefer_spread_collections: false
+    use_key_in_widget_constructors: false
+    library_prefixes: false
+    constant_identifier_names: false
+    no_leading_underscores_for_local_identifiers: false
+    always_use_package_imports: true
+    always_put_required_named_parameters_first: true
+    file_names: true
+    no_leading_underscores_for_library_prefixes: true
+    non_constant_identifier_names: true
+    package_prefixed_library_names: false
+    prefer_interpolation_to_compose_strings: true
+    sized_box_shrink_expand: true
+    sort_child_properties_last: true
+    sort_unnamed_constructors_first: true
+    unnecessary_this: true
+    use_colored_box: true
+    use_decorated_box: true
+    use_enums: true
+    use_named_constants: true
+
+analyzer:
+  errors:
+    deprecated_member_use: ignore
+    always_use_package_imports: error
+    always_put_required_named_parameters_first: warning
+    file_names: error
+    no_leading_underscores_for_library_prefixes: error
+    non_constant_identifier_names: error
+    prefer_interpolation_to_compose_strings: error
+    sized_box_shrink_expand: info
+    sort_child_properties_last: warning
+    sort_unnamed_constructors_first: warning
+    unnecessary_this: warning
+    use_colored_box: info
+    use_decorated_box: info
+    use_enums: warning
+    use_named_constants: warning
+
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
+# https://dart-lang.github.io/linter/lints/index.html
