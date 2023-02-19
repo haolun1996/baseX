@@ -9,6 +9,5 @@ export 'x_get_app.dart';
 export 'x_navigation.dart';
 export 'x_pretty_logger.dart';
 export 'x_share_pref.dart';
-export 'x_widget.dart';
 
 export 'firebase_notification_controller.dart';
