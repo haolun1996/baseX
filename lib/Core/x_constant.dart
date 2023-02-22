@@ -20,12 +20,10 @@ abstract class BaseXConstant {
   abstract String uatBaseUrl;
 
   abstract bool success200;
-  RxString get languageCode;
   RxString get osVersion;
   RxString get deviceModel;
   RxString get appVersion;
   RxString get deviceId;
-  RxString get labelVersion;
   RxString get packageName;
 
   Color get defaultBackgroundColor;
@@ -64,9 +62,6 @@ class DefaultBaseConstant extends BaseXConstant {
   String uatBaseUrl = '';
 
   @override
-  RxString languageCode = 'en'.obs;
-
-  @override
   bool success200 = false;
 
   @override
@@ -80,9 +75,6 @@ class DefaultBaseConstant extends BaseXConstant {
 
   @override
   RxString deviceId = ''.obs;
-
-  @override
-  RxString labelVersion = '1.0.0'.obs;
 
   @override
   RxString packageName = ''.obs;
@@ -211,94 +203,3 @@ class DefaultBaseConstant extends BaseXConstant {
         content: Text(message),
       ));
 }
-
-// abstract class BaseX {
-//   /// Set a default background color if needed, default value is `Colors.white`.
-//   Color get defaultBackgroundColor => Colors.white;
-
-//   // Set a default loading widget if needed.
-//   Widget get defaultLoadingWidget => SizedBox.shrink();
-
-//   //set the statusBarText into white, default false(black).
-//   bool get statusBarTextWhiteColor => false;
-
-//   Widget customErrorWidget(FlutterErrorDetails error) {
-//     return SafeArea(
-//       child: Container(
-//         color: Colors.white,
-//         padding: EdgeInsets.symmetric(horizontal: 20),
-//         child: Column(children: <Widget>[
-//           Container(
-//               padding: EdgeInsets.only(top: 30, bottom: 10),
-//               child: Icon(Icons.announcement, size: 40, color: Colors.red)),
-//           Text(
-//             'An application error has occurred.',
-//             textAlign: TextAlign.center,
-//             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-//           ),
-//           Container(
-//               padding: EdgeInsets.all(15),
-//               width: double.infinity,
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: <Widget>[
-//                   Text('Error message:',
-//                       style: TextStyle(
-//                           fontSize: 15,
-//                           fontWeight: FontWeight.w500,
-//                           decoration: TextDecoration.underline)),
-//                   Text(error.exceptionAsString()),
-//                 ],
-//               )),
-//           Expanded(
-//             child: Container(
-//                 padding: EdgeInsets.symmetric(horizontal: 15),
-//                 width: double.infinity,
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: <Widget>[
-//                     Text('Stack Trace:',
-//                         style: TextStyle(
-//                             fontSize: 15,
-//                             fontWeight: FontWeight.w500,
-//                             decoration: TextDecoration.underline)),
-//                     Expanded(child: SingleChildScrollView(child: Text(error.stack.toString()))),
-//                   ],
-//                 )),
-//           ),
-//           Container(
-//               padding: EdgeInsets.all(15),
-//               width: double.infinity,
-//               child: InkWell(
-//                 child: Container(
-//                   width: double.infinity,
-//                   height: 50,
-//                   decoration: BoxDecoration(
-//                     color: Colors.blue,
-//                     borderRadius: BorderRadius.circular(10),
-//                   ),
-//                   child: Center(
-//                       child: Text('Send Bug Report',
-//                           style: TextStyle(
-//                             color: Colors.white,
-//                             fontWeight: FontWeight.w500,
-//                           ))),
-//                 ),
-//               )),
-//         ]),
-//       ),
-//     );
-//   }
-
-//   Future<void> defaulOnFailedDialog(int statusCode, String message) => Get.dialog(AlertDialog(
-//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-//         content: Text(message),
-//       ));
-
-//   Future<double> getSystemBottomSafeAreaHeight({bool forceAndroidZero = true}) async {
-//     return (Get.mediaQuery.viewPadding.bottom > 15.0 ? 15.0 : Get.mediaQuery.viewPadding.bottom);
-//   }
-
-//   // GeneralErrorHandle onFailed =
-//   //     ((BuildContext context, code, msg, {tryAgain}) => null);
-// }

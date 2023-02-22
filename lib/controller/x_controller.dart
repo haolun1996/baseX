@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:baseX/Core/index.dart';
-import 'package:baseX/translation/label_util.dart';
 
 class XController extends GetxController {
   @override
@@ -35,8 +34,5 @@ class XController extends GetxController {
       baseConstant.osVersion.value = iosInfo.systemVersion!;
       baseConstant.deviceModel.value = '${iosInfo.name} ${iosInfo.model}';
     }
-
-    LabelUtilX labelUtil = LabelUtilX();
-    baseConstant.labelVersion.value = await labelUtil.labelVersion;
   }
 }

@@ -11,9 +11,10 @@ import 'package:baseX/base_x.dart';
 
 late DefaultBaseConstant baseConstant;
 late ApiXService defaultService;
+late XLangController defaultLangController;
 
+/// [runXApp] runXApp<XLabel, XLanguage>
 /// * [title] => Title for when hold minimized app will hold
-/// * [theme] => Set Project app theme
 /// * [themeMode] => Enable dark mode, if null being pass, will disable dark mode. Default value is null
 /// * [currentEnv] => Set current environment. Staging or Live
 /// * [liveBaseUrl] => Set live base url. Required if currentEnv is live
@@ -21,14 +22,13 @@ late ApiXService defaultService;
 /// * [allowOrientationList] => Set allowed Orientation List
 /// * [onFailed] => Set Global onFailed
 /// * [firebaseNotificationController] => Enable FCM, will disable function if no object being pass
-/// * [appLanguage] => Enable App Langauge, will disable function if no object being pass
 /// * [getPages] => Register all page route with binding (if any)
 /// * [initialBinding] => Set Global Binding
 /// * [additionalFunction] => Add additional function before runEtcApp
 /// * [additionalWidget] => Add additional widget before material app
 /// * [required200] => Set api whether always receive http code 200
 /// * [timeOutDurationInSecond] => Set api timeoutDuration to this field in seconds
-void runXApp({
+void runXApp<T extends XLabel, K extends XLanguage>({
   required String title,
   required ThemeData lightTheme,
   required ThemeData darkTheme,
@@ -47,10 +47,10 @@ void runXApp({
   List<DeviceOrientation> allowOrientationList = const [DeviceOrientation.portraitUp],
   FirebaseNotificationController? firebaseNotificationController,
   DefaultBaseConstant? constantConfig,
-  AppTranslationX? appLanguage,
   Function? additionalFunction,
   AddtionalWidget? additionalWidget,
   BaseXHttp? customHttp,
+  XLangController<T, K>? langController,
 }) {
   //Check required field
   // assert(!(appLanguage != null && !requireSharePref),
@@ -80,16 +80,15 @@ void runXApp({
 
   sharedPref();
 
+  if (langController != null) {
+    defaultLangController = Get.put<XLangController<T, K>>(langController);
+  }
+
   //Set Gloabal onFailed
   baseConstant.onFailed = onFailed;
 
   //Initialize Firebase Notification Controller if Exists
   firebaseNotificationController?.initialize();
-
-  //Set App Language
-  if (appLanguage != null) {
-    appTranslationX = appLanguage;
-  }
 
   //Additional Function required before run app
   if (additionalFunction != null) {
@@ -109,7 +108,6 @@ void runXApp({
     getPages: getPages,
     initialPage: initialPage,
     initialBinding: initialBinding,
-    appLanguage: appLanguage,
     themeMode: themeMode,
     additionalWidget: additionalWidget,
   ));
@@ -123,7 +121,6 @@ class MyApp extends StatelessWidget {
   final List<GetPage<dynamic>> getPages;
   final BaseXWidget initialPage;
   final Bindings initialBinding;
-  final AppTranslationX? appLanguage;
   final AddtionalWidget? additionalWidget;
   const MyApp({
     required this.title,
@@ -132,7 +129,6 @@ class MyApp extends StatelessWidget {
     required this.getPages,
     required this.initialPage,
     required this.initialBinding,
-    this.appLanguage,
     this.themeMode,
     this.additionalWidget,
   });
@@ -146,11 +142,10 @@ class MyApp extends StatelessWidget {
       getPages: getPages,
       initialRoute: initialPage.routeName,
       initialBinding: initialBinding,
-      locale: appLanguage?.appLocale,
-      localizationsDelegates: appLanguage == null
+      locale: Get.locale,
+      localizationsDelegates: Get.locale == null
           ? []
           : [
-              appLanguage!.appLocalizationsX.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,

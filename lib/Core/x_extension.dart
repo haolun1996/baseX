@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'package:baseX/translation/translation.dart';
+import 'package:baseX/Core/x_get_app.dart';
+import 'package:baseX/controller/x_lang_controller.dart';
 
 extension TextUtilsStringExtension on String? {
   /// Returns true if string is:
@@ -29,13 +30,11 @@ extension TextUtilsStringExtension on String? {
   }
 
   String? get xtr {
-    if (Get.context == null) return null;
-    return AppLocalizationsX.of(Get.context!)?.translate(this!);
+    return defaultLangController.translate(this!);
   }
 
   String get lr {
-    if (Get.context == null) return this!;
-    return AppLocalizationsX.of(Get.context!)?.translate(this!) ?? this!;
+    return defaultLangController.translate(this!) ?? this!;
   }
 }
 

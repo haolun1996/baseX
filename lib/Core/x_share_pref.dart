@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 ///  [X] only use in BaseX
 BaseXSharePref? X;
 
@@ -10,9 +12,9 @@ abstract class BaseXSharePref {
 
   String get accessToken;
 
-  set languageCode(String? value);
+  set languageCode(Locale? value);
 
-  String get languageCode;
+  Locale get languageCode;
 
   /// override [saveKeyWithValue] with example method below
   void saveKeyWithValue(String key, value);

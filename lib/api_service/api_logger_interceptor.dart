@@ -6,6 +6,20 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
   /// Request on header
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+    Map<String, String?> header = {
+      Headers.acceptHeader: Headers.jsonContentType,
+      'App-Version': baseConstant.appVersion.value,
+      'Os-Type': GetPlatform.isIOS ? 'ios' : 'android',
+      'Label-Version': defaultLangController.labelVersion,
+      if (Get.locale != null) 'Accept-Language': Get.locale?.languageCode,
+      'Device-Model': baseConstant.deviceModel.value,
+      if (baseConstant.deviceId.value != '') 'Device-ID': baseConstant.deviceId.value,
+      if (baseConstant.osVersion.value != '') 'Os-Version': baseConstant.osVersion.value,
+      // 'Device-Type': Platform.isIOS ? 'ios' : 'android',
+      // 'Version-Type': baseConstant.versionType,
+      // 'API-Version': baseConstant.api_version,
+    };
+
     if (options.headers.containsKey('headerType')) {
       if (options.headers['headerType'] == HeaderType.authorized && X != null) {
         options.headers.addAll({HttpHeaders.authorizationHeader: 'Bearer ${X?.accessToken}'});

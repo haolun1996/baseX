@@ -5,9 +5,10 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:baseX/base_x.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get_utils/get_utils.dart';
+import 'package:get/get.dart' hide Response, FormData;
+
+import 'package:baseX/base_x.dart';
 
 part 'api.dart';
 part 'response_x.dart';
