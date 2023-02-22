@@ -1,5 +1,30 @@
 # Change Log
 
+## [v0.0.2](https://github.com/haolun1996/baseX/releases/tag/0.0.2) - 2023-02-22
+- Completed
+    - [Api Service](https://github.com/haolun1996/baseX/tree/main/lib/api_service)
+    - [XController](https://github.com/haolun1996/baseX/blob/main/lib/controller/x_controller.dart)
+    - [Core with](https://github.com/haolun1996/baseX/tree/main/lib/Core)
+        - [BaseXController<T\>](https://github.com/haolun1996/baseX/blob/main/lib/Core/x_base_controller.dart)
+        - [BaseXWidget<T\>](https://github.com/haolun1996/baseX/blob/main/lib/Core/x_base_controller.dart)
+        - [runXApp](https://github.com/haolun1996/baseX/blob/main/lib/Core/x_get_app.dart)
+        - [XNavigation](https://github.com/haolun1996/baseX/blob/main/lib/Core/x_navigation.dart)
+        - [BaseXSharePref](https://github.com/haolun1996/baseX/blob/main/lib/Core/x_share_pref.dart)
+            -> Abstract class interface
+    - [Scroll Behaviour](https://github.com/haolun1996/baseX/blob/main/lib/helper/scroll_behaviour.dart)
+        -> hideScrollShadow(Widget) method to hide on Mobile Scrolling Shadow
+    - [Drop Down Picker with <T\>](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_picker.dart)
+    - [XTranslation in Language Controller with <T\> <K\>](https://github.com/haolun1996/baseX/blob/main/lib/controller/x_lang_controller.dart)
+    - [XLint](https://github.com/haolun1996/baseX/blob/main/lib/x_lint/x_lint.yaml)
+        -> Custom lint 
+- On Going
+    
+- TODO
+    - APi Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
 ## [v0.0.1](https://github.com/haolun1996/baseX/releases/tag/0.0.1) - 2023-02-17
 - Completed
     - [Api Service](https://github.com/haolun1996/baseX/tree/main/lib/api_service)
