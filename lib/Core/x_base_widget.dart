@@ -8,7 +8,7 @@ import 'package:baseX/helper/scroll_behaviour.dart';
 import 'package:get/get.dart';
 
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
-  T get c => controller;
+ T get c => controller;
 
   String get routeName;
 
@@ -91,9 +91,20 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
     return Scaffold(
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       backgroundColor: backgroundColor,
-      body: KeyboardDismissOnTap(
-        dismissOnCapturedTaps: true,
-        child: safeArea ? SafeArea(child: _contentBody(context)) : _contentBody(context),
+      body: GestureDetector(
+        onHorizontalDragDown: (details) {
+          controller.horizontalDown = details.localPosition.dx;
+        },
+        onHorizontalDragEnd: (details) async {
+          if (controller.horizontalDown < 5) {
+            bool needPop = await controller.onBack();
+            if (needPop) Get.back();
+          }
+        },
+        child: KeyboardDismissOnTap(
+          dismissOnCapturedTaps: true,
+          child: safeArea ? SafeArea(child: _contentBody(context)) : _contentBody(context),
+        ),
       ),
     );
   }
