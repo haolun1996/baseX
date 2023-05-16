@@ -31,7 +31,7 @@ class XController extends GetxController {
     } else if (defaultTargetPlatform == TargetPlatform.iOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       baseConstant.deviceId.value = iosInfo.identifierForVendor!;
-      baseConstant.osVersion.value = iosInfo.systemVersion!;
+      baseConstant.osVersion.value = iosInfo.systemVersion;
       baseConstant.deviceModel.value = '${iosInfo.name} ${iosInfo.model}';
     }
   }
