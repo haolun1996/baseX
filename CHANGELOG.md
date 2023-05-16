@@ -1,5 +1,17 @@
 # Change Log
 
+## [v0.0.3](https://github.com/haolun1996/baseX/releases/tag/0.0.3) - 2023-05-16
+- Completed
+    - [Migrate Flutter Version v3.10.0](https://github.com/haolun1996/baseX/pubspec.yaml)
+    - [iOS Gesture Slide Back](https://github.com/haolun1996/baseX/lib/Core/x_base_widget.dart) -> Slide from left screen to right to go back last page
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
 ## [v0.0.2](https://github.com/haolun1996/baseX/releases/tag/0.0.2) - 2023-02-22
 - Completed
     - [Api Service](https://github.com/haolun1996/baseX/tree/main/lib/api_service)
@@ -20,7 +32,7 @@
 - On Going
     
 - TODO
-    - APi Caching
+    - API Caching
     - Endpoint Changing Method
     - Check Permission for Android(12/13)
     - Social Login
