@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
+import 'package:get/get.dart';
+
+import 'package:baseX/Core/x_constant.dart';
 import 'package:baseX/base_x.dart';
 import 'package:baseX/helper/scroll_behaviour.dart';
-import 'package:get/get.dart';
 
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   T get c => controller;

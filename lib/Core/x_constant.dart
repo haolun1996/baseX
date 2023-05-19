@@ -5,6 +5,7 @@ import 'package:flutter_hms_gms_checker/flutter_hms_gms_checker.dart';
 import 'package:get/get.dart';
 import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 
+import 'package:baseX/Core/x_get_app.dart';
 import 'package:baseX/base_x.dart';
 
 enum Environment { Live, Staging }

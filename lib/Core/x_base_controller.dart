@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import 'package:baseX/base_x.dart';
+import 'package:baseX/Core/x_get_app.dart';
 
 /// onFailedDialog => Function will run when super.onFailed return false, by default will show a dialog set in BaseConfig file.
 ///
