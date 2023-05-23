@@ -7,6 +7,7 @@
     - New Added Model
         - [Drawer Action](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/drawer_action.dart)
         - [FloatingAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/floating_action.dart)
+    - [Stacked appbar with body(experimental)](https://github.com/haolun1996/baseX/blob/cdcb65b8a8fa42da28f7cf1b4c26f8fb5fa3ff74/lib/Core/x_base_widget.dart#LL116C13-L153C17)
 - On Going
     
 - TODO
