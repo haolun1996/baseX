@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 
 import 'package:baseX/base_x.dart';
+import 'package:baseX/model/ui/drawer_action.dart';
+import 'package:baseX/model/ui/floating_action.dart';
 
 enum Environment { Live, Staging }
 
@@ -31,6 +33,9 @@ abstract class BaseXConstant {
   Widget get defaultLoadingWidget;
   Widget get envBar;
   Widget customErrorWidget(FlutterErrorDetails error);
+
+  FloatingAction? get floatingAction;
+  DrawerAction? get drawerAction;
 
   Future<void> defaulOnFailedDialog(int statusCode, String message);
   Future<bool> isHMS();
@@ -130,51 +135,61 @@ class DefaultBaseConstant extends BaseXConstant {
     return result;
   }
 
+  /// Error Widget which can be override
   @override
   Widget customErrorWidget(FlutterErrorDetails error) => SafeArea(
         child: Container(
           color: Colors.white,
           padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(children: <Widget>[
-            Container(
+          child: Column(
+            children: [
+              Container(
                 padding: EdgeInsets.only(top: 30, bottom: 10),
-                child: Icon(Icons.announcement, size: 40, color: Colors.red)),
-            Text(
-              'An application error has occurred.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-            ),
-            Container(
-                padding: EdgeInsets.all(15),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text('Error message:',
+                child: Icon(Icons.announcement, size: 40, color: Colors.red),
+              ),
+              Text(
+                'An application error has occurred.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+              ),
+              Container(
+                  padding: EdgeInsets.all(15),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Error message:',
                         style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.underline)),
-                    Text(error.exceptionAsString()),
-                  ],
-                )),
-            Expanded(
-              child: Container(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      Text(error.exceptionAsString()),
+                    ],
+                  )),
+              Expanded(
+                child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 15),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('Stack Trace:',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline)),
+                    children: [
+                      Text(
+                        'Stack Trace:',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
                       Expanded(child: SingleChildScrollView(child: Text(error.stack.toString()))),
                     ],
-                  )),
-            ),
-            Container(
+                  ),
+                ),
+              ),
+              Container(
                 padding: EdgeInsets.all(15),
                 width: double.infinity,
                 child: InkWell(
@@ -186,14 +201,19 @@ class DefaultBaseConstant extends BaseXConstant {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                        child: Text('Send Bug Report',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ))),
+                      child: Text(
+                        'Send Bug Report',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
                   ),
-                )),
-          ]),
+                ),
+              ),
+            ],
+          ),
         ),
       );
 
@@ -202,4 +222,49 @@ class DefaultBaseConstant extends BaseXConstant {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
         content: Text(message),
       ));
+
+  /// Put [floatingAction] with [FloatingAction] in your app_constant for global floating action
+  /// ```dart
+  /// @override
+  /// FloatingAction get floatingAction => FloatingAction(
+  ///   floatingActionButton: FloatingActionButton(
+  ///   onPressed: () {
+  ///     //TODO Add your onPressed code here!
+  ///   },
+  ///   backgroundColor: Colors.blue,
+  ///   child: Icon(Icons.add),
+  ///  ),
+  /// );
+  /// ```
+  @override
+  FloatingAction? get floatingAction => null;
+
+  /// Put [drawerAction] with [DrawerAction] in your app_constant for global drawer action
+  /// ```dart
+  /// @override
+  /// DrawerAction get drawerAction => DrawerAction(
+  ///    drawerPosition: DrawerPosition.Right,
+  ///    drawer: Drawer(
+  ///      child: ListView(
+  ///        padding: EdgeInsets.zero,
+  ///        children: [
+  ///          DrawerHeader(
+  ///            decoration: BoxDecoration(
+  ///              color: Colors.blue,
+  ///            ),
+  ///            child: Text('Drawer Header 2'),
+  ///          ),
+  ///          ListTile(
+  ///            title: Text('Item 2'),
+  ///            onTap: () {
+  ///              //TODO Add your onTap code here!
+  ///            },
+  ///          ),
+  ///        ],
+  ///      ),
+  ///    ),
+  /// );
+  /// ```
+  @override
+  DrawerAction? get drawerAction => null;
 }

@@ -1,20 +1,32 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
-import 'package:baseX/base_x.dart';
-import 'package:baseX/helper/scroll_behaviour.dart';
 import 'package:get/get.dart';
 
+import 'package:baseX/base_x.dart';
+import 'package:baseX/helper/scroll_behaviour.dart';
+import 'package:baseX/model/ui/drawer_action.dart';
+import 'package:baseX/model/ui/floating_action.dart';
+
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
- T get c => controller;
+  /// make [GetWidget.controller] to [c] as shortcut can be used on class who extended to [BaseXWidget]
+  T get c => controller;
 
   String get routeName;
 
   bool get safeArea => true;
 
   bool get resizeToAvoidBottomInset => false;
+
+  /// non-negative value that indicate how much should touch into appbar
+  /// ```dart
+  /// @override
+  /// double get stackedAppBar => 15;
+  /// ```
+  double? get stackedAppBar => null;
 
   Color get backgroundColor => baseConstant.defaultBackgroundColor;
 
@@ -28,8 +40,66 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
 
   Widget envBar() => baseConstant.envBar;
 
+  /// Override [floatingAction] with [FloatingAction] in your widget page with enable [hasFloatingButton] = true
+  /// ```dart
+  /// @override
+  /// FloatingAction? get floatingAction => FloatingAction(
+  ///   floatingActionButton: FloatingActionButton(
+  ///   onPressed: () {
+  ///     //TODO Add your onPressed code here!
+  ///   },
+  ///   backgroundColor: Colors.blue,
+  ///   child: Icon(Icons.add),
+  ///  ),
+  /// );
+  /// ```
+  FloatingAction? get floatingAction => baseConstant.floatingAction;
+
+  /// [hasFloatingButton] needed to set to true to displaying floatingaction button
+  bool get hasFloatingButton => false;
+
+  /// Override [drawerAction] with [DrawerAction] in your widget page with enable [hasDrawer] = true
+  /// ```dart
+  /// @override
+  /// DrawerAction get drawerAction => DrawerAction(
+  ///    drawerPosition: DrawerPosition.Right,
+  ///    drawer: Drawer(
+  ///      child: ListView(
+  ///        padding: EdgeInsets.zero,
+  ///        children: [
+  ///          DrawerHeader(
+  ///            decoration: BoxDecoration(
+  ///              color: Colors.blue,
+  ///            ),
+  ///            child: Text('Drawer Header 2'),
+  ///          ),
+  ///          ListTile(
+  ///            title: Text('Item 2'),
+  ///            onTap: () {
+  ///              // TODO update onTap
+  ///            },
+  ///          ),
+  ///        ],
+  ///      ),
+  ///    ),
+  /// );
+  /// ```
+  DrawerAction get drawerAction => baseConstant.drawerAction!;
+
+  /// [hasDrawer] needed to set to true to displaying drawer
+  bool get hasDrawer => false;
+
   @override
   Widget build(BuildContext context) {
+    if (hasFloatingButton) {
+      assert(!(baseConstant.floatingAction == null),
+          'Please put your floating button to app constant \n');
+    }
+
+    if (hasDrawer) {
+      assert(!(baseConstant.drawerAction == null), 'Please put your drawer to app constant \n');
+    }
+
     return GetPlatform.isIOS
         ? _scaffoldChild(context)
         : WillPopScope(onWillPop: controller.onBack, child: _scaffoldChild(context));
@@ -43,10 +113,43 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
           children: [
             if (baseConstant.position == Position.top && baseConstant.appEnv == Environment.Staging)
               envBar(),
-            if (appBar(context) != null) appBar(context)!,
-            if (body(context) != null)
+            if (stackedAppBar == null)
+              Column(
+                children: [
+                  if (appBar(context) != null) appBar(context)!,
+                  if (body(context) != null)
+                    Expanded(
+                      child: hideScrollShadow(body(context)!),
+                    ),
+                ],
+              ),
+            if (stackedAppBar != null)
               Expanded(
-                child: hideScrollShadow(body(context)!),
+                child: hideScrollShadow(
+                  Stack(
+                    children: [
+                      if (appBar(context) != null) appBar(context)!,
+                      Positioned.fill(
+                        top: -stackedAppBar!,
+                        left: 0,
+                        right: 0,
+                        child: Column(
+                          children: [
+                            if (appBar(context) != null)
+                              Visibility(
+                                visible: false,
+                                maintainState: true,
+                                maintainSize: true,
+                                maintainAnimation: true,
+                                child: appBar(context)!,
+                              ),
+                            if (body(context) != null) hideScrollShadow(body(context)!),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             if (baseConstant.position == Position.bottom &&
                 baseConstant.appEnv == Environment.Staging)
@@ -88,9 +191,31 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   }
 
   Widget _scaffoldChild(BuildContext context) {
+    bool isDrawerLeft = true;
+    if (hasDrawer) {
+      isDrawerLeft = drawerAction.drawerPosition == DrawerPosition.Left;
+    }
+
     return Scaffold(
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       backgroundColor: backgroundColor,
+      floatingActionButton: hasFloatingButton ? floatingAction?.floatingActionButton : null,
+      floatingActionButtonLocation:
+          hasFloatingButton ? floatingAction?.floatingActionButtonLocation : null,
+      floatingActionButtonAnimator:
+          hasFloatingButton ? floatingAction?.floatingActionButtonAnimator : null,
+      drawer: hasDrawer && isDrawerLeft ? drawerAction.drawer : null,
+      onDrawerChanged: hasDrawer && isDrawerLeft ? drawerAction.onDrawerChanged : null,
+      drawerEnableOpenDragGesture:
+          hasDrawer && isDrawerLeft ? drawerAction.drawerEnableOpenDragGesture : true,
+      endDrawer: hasDrawer && !isDrawerLeft ? drawerAction.drawer : null,
+      onEndDrawerChanged: hasDrawer && !isDrawerLeft ? drawerAction.onDrawerChanged : null,
+      endDrawerEnableOpenDragGesture:
+          hasDrawer && !isDrawerLeft ? drawerAction.drawerEnableOpenDragGesture : true,
+      drawerDragStartBehavior:
+          hasDrawer ? drawerAction.drawerDragStartBehavior : DragStartBehavior.start,
+      drawerEdgeDragWidth: hasDrawer ? drawerAction.drawerEdgeDragWidth : null,
+      drawerScrimColor: hasDrawer ? drawerAction.drawerScrimColor : null,
       body: GestureDetector(
         onHorizontalDragDown: (details) {
           controller.horizontalDown = details.localPosition.dx;
