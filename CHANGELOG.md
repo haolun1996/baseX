@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.0.4](https://github.com/haolun1996/baseX/releases/tag/0.0.4) - 2023-05-23
+- Completed
+    - BaseX Scaffold Enhancement
+        - [Drawer and floating icon can be pass into baseX scaffold for customization](https://github.com/haolun1996/baseX/blob/166788b3f466fe6fd99b46248cf4aa0f7342d033/lib/Core/x_base_widget.dart#LL202C7-L218C74)
+    - New Added Model
+        - [Drawer Action](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/drawer_action.dart)
+        - [FloatingAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/floating_action.dart)
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
 ## [v0.0.3](https://github.com/haolun1996/baseX/releases/tag/0.0.3) - 2023-05-16
 - Completed
     - [Migrate Flutter Version v3.10.0](https://github.com/haolun1996/baseX/pubspec.yaml)
