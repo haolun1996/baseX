@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.0.5](https://github.com/haolun1996/baseX/releases/tag/0.0.5) - 2023-05-24
+- Completed
+    - Bug Fixes
+        - throw use wrong widget parent due to expanded did'nt put to normal page view
+    - Changes
+        - put warning to print if did'nt remove on production
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
 ## [v0.0.4](https://github.com/haolun1996/baseX/releases/tag/0.0.4) - 2023-05-23
 - Completed
     - BaseX Scaffold Enhancement
