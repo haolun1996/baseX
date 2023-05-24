@@ -1,5 +1,33 @@
 # Change Log
 
+## [v0.0.4](https://github.com/haolun1996/baseX/releases/tag/0.0.4) - 2023-05-23
+- Completed
+    - BaseX Scaffold Enhancement
+        - [Drawer and floating icon can be pass into baseX scaffold for customization](https://github.com/haolun1996/baseX/blob/166788b3f466fe6fd99b46248cf4aa0f7342d033/lib/Core/x_base_widget.dart#LL202C7-L218C74)
+    - New Added Model
+        - [Drawer Action](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/drawer_action.dart)
+        - [FloatingAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/floating_action.dart)
+    - [Stacked appbar with body(experimental)](https://github.com/haolun1996/baseX/blob/cdcb65b8a8fa42da28f7cf1b4c26f8fb5fa3ff74/lib/Core/x_base_widget.dart#LL116C13-L153C17)
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+## [v0.0.3](https://github.com/haolun1996/baseX/releases/tag/0.0.3) - 2023-05-16
+- Completed
+    - [Migrate Flutter Version v3.10.0](https://github.com/haolun1996/baseX/pubspec.yaml)
+    - [iOS Gesture Slide Back](https://github.com/haolun1996/baseX/lib/Core/x_base_widget.dart) -> Slide from left screen to right to go back last page
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
 ## [v0.0.2](https://github.com/haolun1996/baseX/releases/tag/0.0.2) - 2023-02-22
 - Completed
     - [Api Service](https://github.com/haolun1996/baseX/tree/main/lib/api_service)
@@ -20,7 +48,7 @@
 - On Going
     
 - TODO
-    - APi Caching
+    - API Caching
     - Endpoint Changing Method
     - Check Permission for Android(12/13)
     - Social Login

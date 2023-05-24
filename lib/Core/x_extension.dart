@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:intl/intl.dart';
-
 import 'package:baseX/Core/x_get_app.dart';
 
 extension TextUtilsStringExtension on String? {

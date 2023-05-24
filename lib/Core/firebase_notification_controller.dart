@@ -1,14 +1,9 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_hms_gms_checker/flutter_hms_gms_checker.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:baseX/base_x.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
-import 'package:get/get.dart';
-import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 
 /// Firebase Messaging will auto initialize when class is pass into runEtcApp
 ///

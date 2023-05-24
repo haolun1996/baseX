@@ -11,6 +11,7 @@ abstract class BaseXController<T> extends FullLifeCycleController
     with FullLifeCycleMixin
     implements GeneralCallBack, RequiredCallBack {
   RxBool isLoading = false.obs;
+  double horizontalDown = 0;
   T page = Get.arguments;
 
   @override
