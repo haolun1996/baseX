@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.0.5](https://github.com/haolun1996/baseX/releases/tag/0.0.5) - 2023-05-24
+- Completed
+    - Bug Fixes
+        - [throw use wrong widget parent due to expanded did'nt put to normal page view](https://github.com/haolun1996/baseX/blob/596c7cb479f79a47109bee2c12d2a187c34dd35f/lib/Core/x_base_widget.dart#LL116C15-L126C17)
+    - Changes
+        - [put warning to print if did'nt remove on production](https://github.com/haolun1996/baseX/blob/596c7cb479f79a47109bee2c12d2a187c34dd35f/lib/x_lint/x_lint.yaml#LL5C1-L5C22)
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
 ## [v0.0.4](https://github.com/haolun1996/baseX/releases/tag/0.0.4) - 2023-05-23
 - Completed
     - BaseX Scaffold Enhancement
