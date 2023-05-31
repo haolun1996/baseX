@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_hms_gms_checker/flutter_hms_gms_checker.dart';
 
-import 'package:get/get.dart';
-import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
-
 import 'package:baseX/Core/x_get_app.dart';
 import 'package:baseX/base_x.dart';
 import 'package:baseX/model/ui/drawer_action.dart';
 import 'package:baseX/model/ui/floating_action.dart';
+import 'package:get/get.dart';
+import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 
 enum Environment { Live, Staging }
 
-enum Position { top, bottom }
+enum Position { top, bottom, none }
 
 /// [BaseXConstant] is a base class constant
 abstract class BaseXConstant {

@@ -21,9 +21,16 @@ class XLogger {
 
   /// Yellow text
   /// param [msg] is the message to be logged to the console
-  static void warning(Object? msg) {
+  static void warning(Object? msg, {String? className}) {
     String text = 'WARNING';
-    String result = _yellowBackground(text);
+    String result = '';
+
+    if (className != null) {
+      result = _orangeBackground(className);
+    }
+
+    result += ' ${_yellowBackground(text)}';
+
     debugPrint('$result $msg');
   }
 
@@ -34,9 +41,15 @@ class XLogger {
 
   /// Blue text
   /// param [msg] is the message to be logged to the console
-  static void info(Object? msg) {
+  static void info(Object? msg, {String? className}) {
     String text = 'INFO';
-    String result = _blueBackground(text);
+    String result = '';
+
+    if (className != null) {
+      result = _orangeBackground(className);
+    }
+
+    result += ' ${_blueBackground(text)}';
     debugPrint('$result $msg');
   }
 
@@ -47,18 +60,31 @@ class XLogger {
 
   /// Green text
   /// param [msg] is the message to be logged to the console
-  static void success(Object? msg) {
+  static void success(Object? msg, {String? className}) {
     String text = 'SUCCESS';
-    String result = _greenBackground(text);
+    String result = '';
+
+    if (className != null) {
+      result = _orangeBackground(className);
+    }
+
+    result += ' ${_greenBackground(text)}';
 
     debugPrint('$result $msg');
   }
 
   /// Red text
   /// param [msg] is the message to be logged to the console
-  static void error(Object? msg) {
+  static void error(Object? msg, {String? className}) {
     String text = 'ERROR';
-    String result = _redBackground(text);
+    String result = '';
+
+    if (className != null) {
+      result = _orangeBackground(className);
+    }
+
+    result += ' ${_redBackground(text)}';
+
     debugPrint('$result $msg');
   }
 

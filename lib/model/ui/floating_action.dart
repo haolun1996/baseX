@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FloatingAction {
-  final FloatingActionButton floatingActionButton;
+  final Widget floatingActionButton;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final FloatingActionButtonAnimator? floatingActionButtonAnimator;
 

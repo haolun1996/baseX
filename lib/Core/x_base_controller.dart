@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:baseX/Core/x_get_app.dart';
+import 'package:get/get.dart';
 
 /// onFailedDialog => Function will run when super.onFailed return false, by default will show a dialog set in BaseConfig file.
 ///
@@ -13,6 +14,12 @@ abstract class BaseXController<T> extends FullLifeCycleController
   RxBool isLoading = false.obs;
   double horizontalDown = 0;
   T page = Get.arguments;
+
+  /// [hasFloatingButton] needed to set to true to displaying floatingaction button
+  RxBool hasFloatingButton = false.obs;
+
+  /// [hasDrawer] needed to set to true to displaying drawer
+  RxBool hasDrawer = false.obs;
 
   @override
   void onInit() {

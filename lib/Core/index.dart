@@ -33,7 +33,7 @@ export 'x_navigation.dart'
         loadPageWithRemoveAllPrevious,
         backTo,
         getController;
-export 'x_pretty_logger.dart' show XLogger;
+export 'x_logger.dart' show XLogger;
 export 'x_share_pref.dart' show BaseXSharePref, X;
 
 export 'firebase_notification_controller.dart';

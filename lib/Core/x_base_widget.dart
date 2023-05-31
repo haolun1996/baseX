@@ -54,9 +54,6 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   /// ```
   FloatingAction? get floatingAction => baseConstant.floatingAction;
 
-  /// [hasFloatingButton] needed to set to true to displaying floatingaction button
-  bool get hasFloatingButton => false;
-
   /// Override [drawerAction] with [DrawerAction] in your widget page with enable [hasDrawer] = true
   /// ```dart
   /// @override
@@ -83,20 +80,18 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   ///    ),
   /// );
   /// ```
-  DrawerAction get drawerAction => baseConstant.drawerAction!;
-
-  /// [hasDrawer] needed to set to true to displaying drawer
-  bool get hasDrawer => false;
+  DrawerAction? get drawerAction => baseConstant.drawerAction;
 
   @override
   Widget build(BuildContext context) {
-    if (hasFloatingButton) {
-      assert(!(baseConstant.floatingAction == null),
-          'Please put your floating button to app constant \n');
+    if (c.hasFloatingButton.value) {
+      assert(!(baseConstant.floatingAction == null && floatingAction == null),
+          'Please put your floating button to either app constant or page \n');
     }
 
-    if (hasDrawer) {
-      assert(!(baseConstant.drawerAction == null), 'Please put your drawer to app constant \n');
+    if (c.hasDrawer.value) {
+      assert(!(baseConstant.drawerAction == null && drawerAction == null),
+          'Please put your drawer to app constant \n');
     }
 
     return GetPlatform.isIOS
@@ -193,43 +188,47 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
 
   Widget _scaffoldChild(BuildContext context) {
     bool isDrawerLeft = true;
-    if (hasDrawer) {
-      isDrawerLeft = drawerAction.drawerPosition == DrawerPosition.Left;
+    if (c.hasDrawer.value) {
+      isDrawerLeft = drawerAction!.drawerPosition == DrawerPosition.Left;
     }
 
-    return Scaffold(
-      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      backgroundColor: backgroundColor,
-      floatingActionButton: hasFloatingButton ? floatingAction?.floatingActionButton : null,
-      floatingActionButtonLocation:
-          hasFloatingButton ? floatingAction?.floatingActionButtonLocation : null,
-      floatingActionButtonAnimator:
-          hasFloatingButton ? floatingAction?.floatingActionButtonAnimator : null,
-      drawer: hasDrawer && isDrawerLeft ? drawerAction.drawer : null,
-      onDrawerChanged: hasDrawer && isDrawerLeft ? drawerAction.onDrawerChanged : null,
-      drawerEnableOpenDragGesture:
-          hasDrawer && isDrawerLeft ? drawerAction.drawerEnableOpenDragGesture : true,
-      endDrawer: hasDrawer && !isDrawerLeft ? drawerAction.drawer : null,
-      onEndDrawerChanged: hasDrawer && !isDrawerLeft ? drawerAction.onDrawerChanged : null,
-      endDrawerEnableOpenDragGesture:
-          hasDrawer && !isDrawerLeft ? drawerAction.drawerEnableOpenDragGesture : true,
-      drawerDragStartBehavior:
-          hasDrawer ? drawerAction.drawerDragStartBehavior : DragStartBehavior.start,
-      drawerEdgeDragWidth: hasDrawer ? drawerAction.drawerEdgeDragWidth : null,
-      drawerScrimColor: hasDrawer ? drawerAction.drawerScrimColor : null,
-      body: GestureDetector(
-        onHorizontalDragDown: (details) {
-          controller.horizontalDown = details.localPosition.dx;
-        },
-        onHorizontalDragEnd: (details) async {
-          if (controller.horizontalDown < 5) {
-            bool needPop = await controller.onBack();
-            if (needPop) Get.back();
-          }
-        },
-        child: KeyboardDismissOnTap(
-          dismissOnCapturedTaps: true,
-          child: safeArea ? SafeArea(child: _contentBody(context)) : _contentBody(context),
+    return Obx(
+      () => Scaffold(
+        resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+        backgroundColor: backgroundColor,
+        floatingActionButton:
+            c.hasFloatingButton.value ? floatingAction?.floatingActionButton : null,
+        floatingActionButtonLocation:
+            c.hasFloatingButton.value ? floatingAction?.floatingActionButtonLocation : null,
+        floatingActionButtonAnimator:
+            c.hasFloatingButton.value ? floatingAction?.floatingActionButtonAnimator : null,
+        drawer: c.hasDrawer.value && isDrawerLeft ? drawerAction!.drawer : null,
+        onDrawerChanged: c.hasDrawer.value && isDrawerLeft ? drawerAction!.onDrawerChanged : null,
+        drawerEnableOpenDragGesture:
+            c.hasDrawer.value && isDrawerLeft ? drawerAction!.drawerEnableOpenDragGesture : true,
+        endDrawer: c.hasDrawer.value && !isDrawerLeft ? drawerAction!.drawer : null,
+        onEndDrawerChanged:
+            c.hasDrawer.value && !isDrawerLeft ? drawerAction!.onDrawerChanged : null,
+        endDrawerEnableOpenDragGesture:
+            c.hasDrawer.value && !isDrawerLeft ? drawerAction!.drawerEnableOpenDragGesture : true,
+        drawerDragStartBehavior:
+            c.hasDrawer.value ? drawerAction!.drawerDragStartBehavior : DragStartBehavior.start,
+        drawerEdgeDragWidth: c.hasDrawer.value ? drawerAction!.drawerEdgeDragWidth : null,
+        drawerScrimColor: c.hasDrawer.value ? drawerAction!.drawerScrimColor : null,
+        body: GestureDetector(
+          onHorizontalDragDown: (details) {
+            controller.horizontalDown = details.localPosition.dx;
+          },
+          onHorizontalDragEnd: (details) async {
+            if (controller.horizontalDown < 5) {
+              bool needPop = await controller.onBack();
+              if (needPop) Get.back();
+            }
+          },
+          child: KeyboardDismissOnTap(
+            dismissOnCapturedTaps: true,
+            child: safeArea ? SafeArea(child: _contentBody(context)) : _contentBody(context),
+          ),
         ),
       ),
     );
