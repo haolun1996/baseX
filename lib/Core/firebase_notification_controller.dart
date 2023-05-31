@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'package:baseX/base_x.dart';
@@ -68,32 +70,44 @@ abstract class FirebaseNotificationController<T> {
 
     NotificationSettings settings = await _firebaseMessaging.requestPermission(
         sound: soundEnable, badge: badgeEnable, alert: alertEnable);
-    print('User granted permissions: ${settings.authorizationStatus}');
+    if (kDebugMode) {
+      print('User granted permissions: ${settings.authorizationStatus}');
+    }
 
     _firebaseMessaging.getToken().then((token) async {
       if (token != null) {
         onReceiveToken(token);
       }
-      print('fcmToken: $token');
+      if (kDebugMode) {
+        print('fcmToken: $token');
+      }
     }).catchError((error) {
       onErrorToken(error);
-      print('fcmError $error');
+      if (kDebugMode) {
+        print('fcmError $error');
+      }
     });
 
     RemoteMessage? initialMessage = await FirebaseMessaging.instance.getInitialMessage();
 
     if (initialMessage != null) {
-      print('onLaunch: $initialMessage');
+      if (kDebugMode) {
+        print('onLaunch: $initialMessage');
+      }
       onLaunchMessage(initialMessage);
     }
 
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      print('onMessage: {notification: ${event.notification?.body}, data: ${event.data}}');
+      if (kDebugMode) {
+        print('onMessage: {notification: ${event.notification?.body}, data: ${event.data}}');
+      }
       onMessage(event);
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage event) {
-      print('onResume: {notification: ${event.notification}, data: ${event.data}}');
+      if (kDebugMode) {
+        print('onResume: {notification: ${event.notification}, data: ${event.data}}');
+      }
       onMessageOpenedApp(event);
     });
   }

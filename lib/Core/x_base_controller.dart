@@ -1,6 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:get/get.dart';
 
 import 'package:baseX/Core/x_get_app.dart';
 import 'package:get/get.dart';
@@ -30,27 +29,37 @@ abstract class BaseXController<T> extends FullLifeCycleController
   @override
   void onClose() {
     super.onClose();
-    print('$runtimeType - onClose called');
+    if (kDebugMode) {
+      print('$runtimeType - onClose called');
+    }
   }
 
   @override
   void onDetached() {
-    print('$runtimeType - onDetached called');
+    if (kDebugMode) {
+      print('$runtimeType - onDetached called');
+    }
   }
 
   @override
   void onInactive() {
-    print('$runtimeType - onInactive called');
+    if (kDebugMode) {
+      print('$runtimeType - onInactive called');
+    }
   }
 
   @override
   void onPaused() {
-    print('$runtimeType - onPaused called');
+    if (kDebugMode) {
+      print('$runtimeType - onPaused called');
+    }
   }
 
   @override
   void onResumed() {
-    print('$runtimeType - onResumed called');
+    if (kDebugMode) {
+      print('$runtimeType - onResumed called');
+    }
   }
 
   void onFailedDialog(int code, String msg, dynamic data) {

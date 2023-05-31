@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,7 +11,9 @@ void changeDarkMode() {
     themeData = ThemeMode.dark;
   }
   Get.changeThemeMode(themeData);
-  print(Get.context!.isDarkMode);
+  if (kDebugMode) {
+    print(Get.context!.isDarkMode);
+  }
 }
 
 /// Light Color, Dark Color

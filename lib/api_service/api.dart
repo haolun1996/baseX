@@ -90,7 +90,9 @@ class ApiXService {
       XResponse aResponse = XResponse<T>.fromJson(response.data, create: create);
       return aResponse.data;
     } on Exception catch (e) {
-      print('error in get: $e');
+      if (kDebugMode) {
+        print('error in get: $e');
+      }
       _processError(e, onFailed);
     }
   }
@@ -146,7 +148,9 @@ class ApiXService {
 
       return aResponse.data;
     } on Exception catch (e) {
-      print('error in post: $e');
+      if (kDebugMode) {
+        print('error in post: $e');
+      }
       _processError(e, onFailed);
     }
   }
@@ -168,7 +172,9 @@ class ApiXService {
       }
       return aResponse.data;
     } on Exception catch (e) {
-      print('error in put: $e');
+      if (kDebugMode) {
+        print('error in put: $e');
+      }
       _processError(e, onFailed);
     }
   }
@@ -189,7 +195,9 @@ class ApiXService {
       }
       return aResponse.data;
     } on Exception catch (e) {
-      print('error in delete: $e');
+      if (kDebugMode) {
+        print('error in delete: $e');
+      }
       _processError(e, onFailed);
     }
   }
