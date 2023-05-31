@@ -1,5 +1,38 @@
 # Change Log
 
+## [v0.1.0](https://github.com/haolun1996/baseX/releases/tag/0.1.0) - 2023-05-31
+- Pump version to v0.1.0 as follow Semantic Versioning with MAJOR.MINOR.PATCH
+    - MAJOR - Breaking change / restructure
+    - MINOR - New feature / component
+    - PATCH - Small Request / bug fix on existing feature or component
+- New
+    - Skeleton Widget named as [XSkeleton](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_skeleton.dart) for round / square / ascpectratio
+    - Image Widget named as [XcachedImage](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_cached_image.dart)
+        - error / placeholder / image builder
+        - with skeleton when loading (optional)
+    - Added none enum value to [Position](https://github.com/haolun1996/baseX/blob/e90c6a62feef99e6ea5b819f3703cac654c5074e/lib/Core/x_constant.dart#L14) for hiding envBar
+    - Added className param on x_logger class in [warning / info / success / error](https://github.com/haolun1996/baseX/blob/e90c6a62feef99e6ea5b819f3703cac654c5074e/lib/Core/x_logger.dart#L24) method
+- Changes
+    - put kDebugMode to print
+    - bool hasDrawer and hasFloatingButton moved to [BaseXController](https://github.com/haolun1996/baseX/blob/e90c6a62feef99e6ea5b819f3703cac654c5074e/lib/Core/x_base_controller.dart#LL17C1-L21C32) from BaseXWidget
+    - Wrapped [Obx on Scaffold](https://github.com/haolun1996/baseX/blob/e90c6a62feef99e6ea5b819f3703cac654c5074e/lib/Core/x_base_widget.dart#LL195C14-L195C14) to listen changes of hasDrawer and hasFloatingButton
+    - Rename x_pretty_logger to [x_logger](https://github.com/haolun1996/baseX/blob/main/lib/Core/x_logger.dart)
+    - Changed FloatingActionButton to Widget in [FloatingAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/floating_action.dart) UI model to be more customization
+
+- On Going
+    - Hide envBar when on nested page
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.0.5](https://github.com/haolun1996/baseX/releases/tag/0.0.5) - 2023-05-24
 - Completed
     - Bug Fixes
@@ -13,6 +46,11 @@
     - Endpoint Changing Method
     - Check Permission for Android(12/13)
     - Social Login
+
+<br />
+
+***
+<br />
 
 ## [v0.0.4](https://github.com/haolun1996/baseX/releases/tag/0.0.4) - 2023-05-23
 - Completed
@@ -30,6 +68,11 @@
     - Check Permission for Android(12/13)
     - Social Login
 
+<br />
+
+***
+<br />
+
 ## [v0.0.3](https://github.com/haolun1996/baseX/releases/tag/0.0.3) - 2023-05-16
 - Completed
     - [Migrate Flutter Version v3.10.0](https://github.com/haolun1996/baseX/pubspec.yaml)
@@ -41,6 +84,11 @@
     - Endpoint Changing Method
     - Check Permission for Android(12/13)
     - Social Login
+
+<br />
+
+***
+<br />
 
 ## [v0.0.2](https://github.com/haolun1996/baseX/releases/tag/0.0.2) - 2023-02-22
 - Completed
@@ -66,6 +114,11 @@
     - Endpoint Changing Method
     - Check Permission for Android(12/13)
     - Social Login
+
+<br />
+
+***
+<br />
 
 ## [v0.0.1](https://github.com/haolun1996/baseX/releases/tag/0.0.1) - 2023-02-17
 - Completed
