@@ -79,6 +79,57 @@ class XSkeleton extends StatefulWidget {
     );
   }
 
+  /// Making and looping skeleton listing
+  /// - [child] : Accepts as [Row] which will auto looping for this widget
+  /// - [count] : Accepts  as [int] which indicate how many skeleton to be loop
+  /// - [scrollDirection] : Accepts  as [Axis] which indicate vertical or horizontal display
+  /// - [seperatorWidget] : Accepts  as [Widget] which is a seperator in skeleton list
+  ///
+  /// ```dart
+  /// XSkeleton.skeletonList(
+  ///   child: Row(
+  ///     children: [
+  ///       XSkeleton.round(size: 50),
+  ///       SizedBox(width: 10),
+  ///       Column(
+  ///         crossAxisAlignment: CrossAxisAlignment.start,
+  ///         children: [
+  ///           XSkeleton.ratio(
+  ///             aspectRatio: 9 / 16,
+  ///             height: 20,
+  ///           ),
+  ///           SizedBox(height: 5),
+  ///           XSkeleton(
+  ///             width: 100,
+  ///             height: 15,
+  ///           ),
+  ///         ],
+  ///       ),
+  ///     ],
+  ///   ),
+  ///   count: 10,
+  ///   scrollDirection: Axis.vertical,
+  ///   seperatorWidget: SizedBox(width: 15),
+  /// ),
+  /// ```
+  static Widget skeletonList({
+    required Row child,
+    int count = 1,
+    Axis scrollDirection = Axis.vertical,
+    Widget? seperatorWidget,
+  }) {
+    return ListView.separated(
+      itemBuilder: (_, __) => child,
+      separatorBuilder: (_, __) =>
+          seperatorWidget ??
+          (scrollDirection == Axis.vertical ? SizedBox(height: 10) : SizedBox(width: 20)),
+      scrollDirection: scrollDirection,
+      itemCount: count,
+    );
+
+    // return Column(children: widgetList);
+  }
+
   /// Accepts a [double], set width of the skeleton effect
   final double? width;
 
