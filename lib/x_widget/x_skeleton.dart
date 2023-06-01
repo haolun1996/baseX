@@ -126,8 +126,6 @@ class XSkeleton extends StatefulWidget {
       scrollDirection: scrollDirection,
       itemCount: count,
     );
-
-    // return Column(children: widgetList);
   }
 
   /// Accepts a [double], set width of the skeleton effect
