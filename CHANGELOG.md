@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.1.1](https://github.com/haolun1996/baseX/releases/tag/0.1.1) - 2023-06-01
+- New
+    - [Hide envBar when on nested page](https://github.com/haolun1996/baseX/blob/ae846ddfcb5f2dbb2464a8fddd3dc5dba8b6fa89/lib/Core/x_base_widget.dart#LL103C1-L107C6)
+    - [Skeleton Widget List](https://github.com/haolun1996/baseX/blob/8443adceb25fc877127c59e36dd10b7b48ce41ea/lib/x_widget/x_skeleton.dart#LL115C2-L129C4)
+- Changes
+
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.1.0](https://github.com/haolun1996/baseX/releases/tag/0.1.0) - 2023-05-31
 - Pump version to v0.1.0 as follow Semantic Versioning with MAJOR.MINOR.PATCH
     - MAJOR - Breaking change / restructure
