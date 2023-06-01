@@ -100,12 +100,19 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   }
 
   Widget _contentBody(BuildContext context) {
+    bool isPage = true;
+
+    if (c.page != null) {
+      isPage = (c.page as BaseXWidget).routeName == routeName;
+    }
     return Stack(
       children: [
         Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            if (baseConstant.position == Position.top && baseConstant.appEnv == Environment.Staging)
+            if (baseConstant.position == Position.top &&
+                baseConstant.appEnv == Environment.Staging &&
+                isPage)
               envBar(),
             if (stackedAppBar == null)
               Expanded(
@@ -148,7 +155,8 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
                 ),
               ),
             if (baseConstant.position == Position.bottom &&
-                baseConstant.appEnv == Environment.Staging)
+                baseConstant.appEnv == Environment.Staging &&
+                isPage)
               envBar(),
           ],
         ),
