@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.1.2](https://github.com/haolun1996/baseX/releases/tag/0.1.2) - 2023-06-06
+- New
+    - [onBack & onBackButton](https://github.com/haolun1996/baseX/blob/8246bdcc91f81614060b84f13518e3d49ea603e4/lib/Core/x_base_controller.dart#LL86C1-L96C4) to split out onBack use on WillPopScope and normal usage back
+- Changes
+
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.1.1](https://github.com/haolun1996/baseX/releases/tag/0.1.1) - 2023-06-01
 - New
     - [Hide envBar when on nested page](https://github.com/haolun1996/baseX/blob/ae846ddfcb5f2dbb2464a8fddd3dc5dba8b6fa89/lib/Core/x_base_widget.dart#LL103C1-L107C6)
