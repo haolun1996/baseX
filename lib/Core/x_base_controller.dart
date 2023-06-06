@@ -89,7 +89,7 @@ abstract class BaseXController<T> extends FullLifeCycleController
   }
 
   @override
-  Future<void> onButtonBack() async {
+  Future<void> onBackButton() async {
     bool needPop = await onBack();
 
     return needPop ? Get.back() : null;
@@ -103,5 +103,5 @@ abstract class GeneralCallBack {
 abstract class RequiredCallBack {
   Future<bool> onBack();
 
-  void onButtonBack();
+  void onBackButton();
 }
