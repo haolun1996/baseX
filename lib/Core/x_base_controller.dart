@@ -20,6 +20,10 @@ abstract class BaseXController<T> extends FullLifeCycleController
   /// [hasDrawer] needed to set to true to displaying drawer
   RxBool hasDrawer = false.obs;
 
+  /// Accepts a [RxBool], Default value : true
+  /// Set [isAllowBack] to false to disallow user to get back.
+  RxBool isAllowBack = true.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -80,7 +84,16 @@ abstract class BaseXController<T> extends FullLifeCycleController
   }
 
   @override
-  Future<bool> onBack() async => true;
+  Future<bool> onBack() async {
+    return isAllowBack.value;
+  }
+
+  @override
+  Future<void> onButtonBack() async {
+    bool needPop = await onBack();
+
+    return needPop ? Get.back() : null;
+  }
 }
 
 abstract class GeneralCallBack {
@@ -88,5 +101,7 @@ abstract class GeneralCallBack {
 }
 
 abstract class RequiredCallBack {
-  Future<bool> onBack() async => true;
+  Future<bool> onBack();
+
+  void onButtonBack();
 }
