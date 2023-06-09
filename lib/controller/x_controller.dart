@@ -1,11 +1,10 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:android_id/android_id.dart';
+import 'package:baseX/Core/index.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
-import 'package:baseX/Core/index.dart';
 
 class XController extends GetxController {
   @override
@@ -32,7 +31,7 @@ class XController extends GetxController {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       baseConstant.deviceId.value = iosInfo.identifierForVendor!;
       baseConstant.osVersion.value = iosInfo.systemVersion;
-      baseConstant.deviceModel.value = '${iosInfo.name} ${iosInfo.model}';
+      baseConstant.deviceModel.value = '${iosInfo.name} ${iosInfo.utsname.machine}';
     }
   }
 }
