@@ -68,6 +68,9 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
     XLogger.errorBody('║');
     XLogger.errorBody('╟ RESPONSE STATUS CODE: ${err.response?.statusCode}');
     XLogger.errorBody('╟ SERVER STATUS MESSAGE: ${err.response?.statusMessage}');
+    if (err.response?.data.containsKey('code') && err.response?.data['code'] != 40000) {
+      XLogger.errorBody('╟ CODE: ${err.response?.data['code']}');
+    }
     XLogger.errorBody('╟ RAW DATA: ${err.response?.data}');
     // if (err.response?.data != null)
     //   print('ERROR_KEY : ${err.response?.data['error_key']}');
