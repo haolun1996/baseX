@@ -4,15 +4,14 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'package:baseX/Core/x_constant.dart';
+import 'package:baseX/base_x.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
-import 'package:baseX/Core/x_constant.dart';
-import 'package:baseX/base_x.dart';
-
 late DefaultBaseConstant baseConstant;
 late ApiXService defaultService;
-late XLangController defaultLangController;
+XLangController? defaultLangController;
 
 /// [runXApp] runXApp<XLabel, XLanguage>
 /// * [title] => Title for when hold minimized app will hold
