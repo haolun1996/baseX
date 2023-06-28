@@ -1,5 +1,29 @@
 # Change Log
 
+## [v0.1.3](https://github.com/haolun1996/baseX/releases/tag/0.1.3) - 2023-06-28
+- Bug Fixes
+    - change [defaultLangController](https://github.com/haolun1996/baseX/blob/04383ed5086f31c4660b67e5502669e3bb96d888/lib/Core/x_get_app.dart#L14) to nullable instead of late affected on
+        - [xtr](https://github.com/haolun1996/baseX/blob/04383ed5086f31c4660b67e5502669e3bb96d888/lib/Core/x_extension.dart#L30)
+        - [lr](https://github.com/haolun1996/baseX/blob/04383ed5086f31c4660b67e5502669e3bb96d888/lib/Core/x_extension.dart#L34C9-L34C9)
+        - header api [ApiInterceptors](https://github.com/haolun1996/baseX/blob/04383ed5086f31c4660b67e5502669e3bb96d888/lib/api_service/api_interceptor.dart#L13) &
+        [XLoggerInterceptors](https://github.com/haolun1996/baseX/blob/04383ed5086f31c4660b67e5502669e3bb96d888/lib/api_service/api_logger_interceptor.dart#L13)
+- New
+    - [uploadProgress & downloadProgress](https://github.com/haolun1996/baseX/blob/04383ed5086f31c4660b67e5502669e3bb96d888/lib/api_service/api.dart#L138C1-L139C41) at POST request to retrive download and upload information from dio
+- Changes
+
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.1.2](https://github.com/haolun1996/baseX/releases/tag/0.1.2) - 2023-06-06
 - New
     - [onBack & onBackButton](https://github.com/haolun1996/baseX/blob/8246bdcc91f81614060b84f13518e3d49ea603e4/lib/Core/x_base_controller.dart#LL86C1-L96C4) to split out onBack use on WillPopScope and normal usage back
