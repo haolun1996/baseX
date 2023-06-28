@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+
 import 'package:baseX/Core/x_get_app.dart';
+import 'package:intl/intl.dart';
 
 extension TextUtilsStringExtension on String? {
   /// Returns true if string is:
@@ -26,11 +27,11 @@ extension TextUtilsStringExtension on String? {
   }
 
   String? get xtr {
-    return defaultLangController.translate(this!);
+    return defaultLangController?.translate(this!);
   }
 
   String get lr {
-    return defaultLangController.translate(this!) ?? this!;
+    return defaultLangController?.translate(this!) ?? this!;
   }
 }
 

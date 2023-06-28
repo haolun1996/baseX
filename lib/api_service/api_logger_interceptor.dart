@@ -10,7 +10,7 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
       Headers.acceptHeader: Headers.jsonContentType,
       'App-Version': baseConstant.appVersion.value,
       'Os-Type': GetPlatform.isIOS ? 'ios' : 'android',
-      'Label-Version': defaultLangController.labelVersion,
+      if (defaultLangController != null) 'Label-Version': defaultLangController?.labelVersion,
       if (Get.locale != null) 'Accept-Language': Get.locale?.languageCode,
       'Device-Model': baseConstant.deviceModel.value,
       if (baseConstant.deviceId.value != '') 'Device-ID': baseConstant.deviceId.value,
