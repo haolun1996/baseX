@@ -132,11 +132,20 @@ class ApiXService {
   ///   );
   /// ```
   Future post<T>(String endpoint, JSON body, OnFail onFailed,
-      {FromJsonM<T>? create, OnGenericCallBack? onSuccess, bool requiredToken = true}) async {
+      {FromJsonM<T>? create,
+      OnGenericCallBack? onSuccess,
+      bool requiredToken = true,
+      ProgressCallback? uploadProgress,
+      ProgressCallback? downloadProgress}) async {
     try {
       await _getHeaderType(requiredToken);
       FormData formData = FormData.fromMap(body);
-      Response response = await _dio.post(_mixPathParam(endpoint), data: formData);
+      Response response = await _dio.post(
+        _mixPathParam(endpoint),
+        data: formData,
+        onSendProgress: uploadProgress,
+        onReceiveProgress: downloadProgress,
+      );
       XResponse aResponse = XResponse<T>.fromJson(
         response.data,
         create: create,
