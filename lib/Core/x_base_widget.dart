@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
+import 'package:get/get.dart';
+
 import 'package:baseX/base_x.dart';
 import 'package:baseX/helper/scroll_behaviour.dart';
 import 'package:baseX/model/ui/drawer_action.dart';
 import 'package:baseX/model/ui/floating_action.dart';
-import 'package:get/get.dart';
 
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   /// make [GetWidget.controller] to [c] as shortcut can be used on class who extended to [BaseXWidget]
@@ -26,6 +27,8 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   /// double get stackedAppBar => 15;
   /// ```
   double? get stackedAppBar => null;
+
+  bool get isReversedStackAppBar => false;
 
   Color get backgroundColor => baseConstant.defaultBackgroundColor;
 
@@ -130,27 +133,9 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
               Expanded(
                 child: hideScrollShadow(
                   Stack(
-                    children: [
-                      if (appBar(context) != null) appBar(context)!,
-                      Positioned.fill(
-                        top: -stackedAppBar!,
-                        left: 0,
-                        right: 0,
-                        child: Column(
-                          children: [
-                            if (appBar(context) != null)
-                              Visibility(
-                                visible: false,
-                                maintainState: true,
-                                maintainSize: true,
-                                maintainAnimation: true,
-                                child: appBar(context)!,
-                              ),
-                            if (body(context) != null) hideScrollShadow(body(context)!),
-                          ],
-                        ),
-                      ),
-                    ],
+                    children: isReversedStackAppBar
+                        ? (stackedChildren(context).reversed.toList())
+                        : stackedChildren(context),
                   ),
                 ),
               ),
@@ -165,6 +150,30 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
         if (kDebugMode && routeName.isNotEmpty) _nameOfPageTag(),
       ],
     );
+  }
+
+  List<Widget> stackedChildren(BuildContext context) {
+    return [
+      if (appBar(context) != null) appBar(context)!,
+      Positioned.fill(
+        top: -stackedAppBar!,
+        left: 0,
+        right: 0,
+        child: Column(
+          children: [
+            if (appBar(context) != null)
+              Visibility(
+                visible: false,
+                maintainState: true,
+                maintainSize: true,
+                maintainAnimation: true,
+                child: appBar(context)!,
+              ),
+            if (body(context) != null) hideScrollShadow(body(context)!),
+          ],
+        ),
+      ),
+    ];
   }
 
   Widget _nameOfPageTag() {
