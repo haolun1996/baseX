@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
+import 'package:get/get.dart';
+
 import 'package:baseX/base_x.dart';
 import 'package:baseX/helper/scroll_behaviour.dart';
 import 'package:baseX/model/ui/drawer_action.dart';
 import 'package:baseX/model/ui/floating_action.dart';
-import 'package:get/get.dart';
 
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   /// make [GetWidget.controller] to [c] as shortcut can be used on class who extended to [BaseXWidget]
@@ -102,7 +103,18 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   Widget _contentBody(BuildContext context) {
     bool isPage = true;
 
-    if (c.page != null) {
+    if (c.page != null &&
+        (c.page.runtimeType is int ||
+            c.page.runtimeType is double ||
+            c.page.runtimeType is String ||
+            c.page.runtimeType is bool)) {
+      assert(
+          !(c.page.runtimeType is int ||
+              c.page.runtimeType is double ||
+              c.page.runtimeType is String ||
+              c.page.runtimeType is bool),
+          'Please do not re-assign new value to c.page | page in controller \n');
+    } else {
       isPage = (c.page as BaseXWidget).routeName == routeName;
     }
     return Stack(
