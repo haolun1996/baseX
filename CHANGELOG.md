@@ -1,5 +1,25 @@
 # Change Log
 
+## [v0.1.4](https://github.com/haolun1996/baseX/releases/tag/0.1.4) - 2023-07-31
+- Bug Fixes
+    
+- New
+    
+- Changes
+    - update plugin to latest version in [pubspec.yaml](https://github.com/haolun1996/baseX/blob/53fbf4cd4de139d8b965fe5454a98071aca567b0/pubspec.yaml#L19C3-L19C39)
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.1.3](https://github.com/haolun1996/baseX/releases/tag/0.1.3) - 2023-06-28
 - Bug Fixes
     - change [defaultLangController](https://github.com/haolun1996/baseX/blob/04383ed5086f31c4660b67e5502669e3bb96d888/lib/Core/x_get_app.dart#L14) to nullable instead of late affected on
