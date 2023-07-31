@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_hms_gms_checker/flutter_hms_gms_checker.dart';
+import 'package:flutter_hms_gms_availability/flutter_hms_gms_availability.dart';
 
-import 'package:baseX/Core/x_get_app.dart';
+import 'package:get/get.dart';
+import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
+
 import 'package:baseX/base_x.dart';
 import 'package:baseX/model/ui/drawer_action.dart';
 import 'package:baseX/model/ui/floating_action.dart';
-import 'package:get/get.dart';
-import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 
 enum Environment { Live, Staging }
 
@@ -131,7 +131,7 @@ class DefaultBaseConstant extends BaseXConstant {
   @override
   Future<bool> isGMS() async {
     if (GetPlatform.isIOS) return true;
-    bool result = await FlutterHmsGmsChecker.isGmsAvailable;
+    bool result = await FlutterHmsGmsAvailability.isGmsAvailable;
     return result;
   }
 
