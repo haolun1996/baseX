@@ -1,16 +1,29 @@
 part of api_service;
 
 mixin InterceptorMixin {
-  DioError onErrorProcess(int? statusCode, String message, RequestOptions requestOptions) {
+  DioError onErrorProcess(
+    int? statusCode,
+    String message,
+    RequestOptions requestOptions, {
+    int? code,
+  }) {
     XHttpType x = XHttpType.fromValue(statusCode, useCustom: !(baseXHttp.runtimeType == BaseXHttp));
 
     switch (x) {
       case XHttpType.invalidRequest:
-        return InvalidRequestException(
-          errorMsg: message,
-          requestOptions: requestOptions,
-          statusCode: statusCode,
-        );
+        if (code != null && code != 40000) {
+          return InvalidRequestException(
+            errorMsg: message,
+            requestOptions: requestOptions,
+            statusCode: code,
+          );
+        } else {
+          return InvalidRequestException(
+            errorMsg: message,
+            requestOptions: requestOptions,
+            statusCode: statusCode,
+          );
+        }
       case XHttpType.unauthorized:
         return UnauthorizedException(
           errorMsg: message,

@@ -238,6 +238,18 @@ class ApiXService {
     Map<String, dynamic> exec;
     switch (exception.runtimeType) {
       case InvalidRequestException:
+        if ((exception as InvalidRequestException).statusCode != 400) {
+          exec = {
+            'statusCode': exception.statusCode,
+            'message': exception.toString(),
+          };
+        } else {
+          exec = {
+            'statusCode': 422,
+            'message': exception.toString(),
+          };
+        }
+
         exec = {
           'statusCode': 400,
           'message': exception.toString(),

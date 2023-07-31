@@ -50,6 +50,7 @@ class ApiInterceptors extends Interceptor with InterceptorMixin {
       case DioErrorType.badResponse:
         customError = onErrorProcess(
           err.response?.statusCode,
+          code: err.response?.data['code'],
           err.response?.data['message'],
           err.requestOptions,
         );
