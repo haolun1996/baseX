@@ -1,5 +1,27 @@
 # Change Log
 
+## [v0.1.5](https://github.com/haolun1996/baseX/releases/tag/0.1.5) - 2023-07-31
+- Bug Fixes
+    - check page [runtimeType](https://github.com/haolun1996/baseX/blob/a2701d8b000555ea8969b30182bdecc299600b7a/lib/Core/x_base_widget.dart#L108C5-L122C1) is not integer/double/string/bool
+    - handle if code != 40000 when request http 400, possible when http 400 then code have other than [40000](https://github.com/haolun1996/baseX/blob/a2701d8b000555ea8969b30182bdecc299600b7a/lib/api_service/mixin_api_interceptor.dart#L14C9-L26C10)
+    
+- New
+    - reversed [stacked appbar](https://github.com/haolun1996/baseX/blob/a2701d8b000555ea8969b30182bdecc299600b7a/lib/Core/x_base_widget.dart#L147C1-L149C52)
+- Changes
+    - change iosinfo.model  to [iosinfo.utsname.machine](https://github.com/haolun1996/baseX/blob/a2701d8b000555ea8969b30182bdecc299600b7a/lib/controller/x_controller.dart#L34)
+- On Going
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.1.4](https://github.com/haolun1996/baseX/releases/tag/0.1.4) - 2023-07-31
 - Bug Fixes
     
