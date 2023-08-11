@@ -21,7 +21,6 @@ XLangController? defaultLangController;
 /// * [staginBaseUrl] => Set staging base url. Required if currentEnv is staging
 /// * [allowOrientationList] => Set allowed Orientation List
 /// * [onFailed] => Set Global onFailed
-/// * [firebaseNotificationController] => Enable FCM, will disable function if no object being pass
 /// * [getPages] => Register all page route with binding (if any)
 /// * [initialBinding] => Set Global Binding
 /// * [additionalFunction] => Add additional function before runEtcApp
@@ -45,7 +44,6 @@ void runXApp<T extends XLabel, K extends XLanguage>({
   bool? required200,
   Duration timeOutDurationInSecond = timeoutDuration,
   List<DeviceOrientation> allowOrientationList = const [DeviceOrientation.portraitUp],
-  FirebaseNotificationController? firebaseNotificationController,
   DefaultBaseConstant? constantConfig,
   Function? additionalFunction,
   AddtionalWidget? additionalWidget,
@@ -55,8 +53,6 @@ void runXApp<T extends XLabel, K extends XLanguage>({
   //Check required field
   // assert(!(appLanguage != null && !requireSharePref),
   //     'Required Share Preference to enable App Language');
-  // assert(!(firebaseNotificationController != null && !requireSharePref),
-  // 'Required Share Preference to enable Firebase Notification');
   assert((Uri.tryParse(staginBaseUrl)?.isAbsolute ?? false), 'Please enter a valid staging url');
   assert((Uri.tryParse(liveBaseUrl)?.isAbsolute ?? false), 'Please enter a valid live url');
 
@@ -86,9 +82,6 @@ void runXApp<T extends XLabel, K extends XLanguage>({
 
   //Set Gloabal onFailed
   baseConstant.onFailed = onFailed;
-
-  //Initialize Firebase Notification Controller if Exists
-  firebaseNotificationController?.initialize();
 
   //Additional Function required before run app
   if (additionalFunction != null) {

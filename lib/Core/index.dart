@@ -35,5 +35,3 @@ export 'x_navigation.dart'
         getController;
 export 'x_logger.dart' show XLogger;
 export 'x_share_pref.dart' show BaseXSharePref, X;
-
-export 'firebase_notification_controller.dart';
