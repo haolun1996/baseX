@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.1.7](https://github.com/haolun1996/baseX/releases/tag/0.1.6) - 2023-07-31
+- Bug Fixes
+    - c.page is null
+    
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.1.6](https://github.com/haolun1996/baseX/releases/tag/0.1.6) - 2023-07-31
 - Remove
     - Remove all firebase related
