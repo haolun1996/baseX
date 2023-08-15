@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.2.1](https://github.com/haolun1996/baseX/releases/tag/0.2.1) - 2023-08-15
+- Bug Fixes
+    - status code >= 200 should check with status(true | false) at [api_interceptor](https://github.com/haolun1996/baseX/blob/3a16cab9e221aedd22afa3ffe4523be8f5383eff/lib/api_service/api_interceptor.dart#L86) and [api_logger_interceptor](https://github.com/haolun1996/baseX/blob/3a16cab9e221aedd22afa3ffe4523be8f5383eff/lib/api_service/api_logger_interceptor.dart#L90)
+
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.0](https://github.com/haolun1996/baseX/releases/tag/0.2.0) - 2023-08-15
 - New
     - [DefaultBaseXHttp](https://github.com/haolun1996/baseX/blob/1c724f1b1282603eead9e4652ccf6ee95026fc5c/lib/api_service/http_type_x.dart#L3) class added as abstract class cannot be declared 
