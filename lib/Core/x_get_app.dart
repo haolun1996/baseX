@@ -39,15 +39,15 @@ void runXApp<T extends XLabel, K extends XLanguage>({
   required BaseXWidget initialPage,
   required Bindings initialBinding,
   required GeneralErrorHandle onFailed,
+  BaseXHttp? customHttp,
   ThemeMode? themeMode,
   Environment currentEnv = Environment.Staging,
-  bool? required200,
+  bool required200 = false,
   Duration timeOutDurationInSecond = timeoutDuration,
   List<DeviceOrientation> allowOrientationList = const [DeviceOrientation.portraitUp],
   DefaultBaseConstant? constantConfig,
   Function? additionalFunction,
   AddtionalWidget? additionalWidget,
-  BaseXHttp? customHttp,
   XLangController<T, K>? langController,
 }) {
   //Check required field
@@ -70,9 +70,7 @@ void runXApp<T extends XLabel, K extends XLanguage>({
   baseConstant.appEnv = currentEnv;
 
   // Set api whether always receive http code 200
-  if (required200 != null) {
-    baseConstant.success200 = required200;
-  }
+  baseConstant.success200 = required200;
 
   sharedPref();
 
@@ -88,11 +86,9 @@ void runXApp<T extends XLabel, K extends XLanguage>({
     additionalFunction();
   }
   Dio _dio = Dio();
-  if (customHttp != null) {
-    defaultService = ApiXService.init(_dio, timeOutDurationInSecond, customHttp: customHttp);
-  } else {
-    defaultService = ApiXService.init(_dio, timeOutDurationInSecond);
-  }
+
+  defaultService =
+      ApiXService.init(_dio, timeOutDurationInSecond, customHttp: customHttp ?? DefaultBaseXHttp());
 
   runApp(MyApp(
     title: title,

@@ -83,7 +83,7 @@ class ApiInterceptors extends Interceptor with InterceptorMixin {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     if (response.data.containsKey('code') && baseConstant.success200) {
-      if (response.data['code'] > 200) {
+      if (response.data['code'] >= 200) {
         return handler.reject(
           onErrorProcess(
             response.data['code'],

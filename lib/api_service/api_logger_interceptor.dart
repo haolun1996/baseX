@@ -87,7 +87,7 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) async {
     if (response.data.containsKey('code') && baseConstant.success200) {
-      if (response.data['code'] > 200) {
+      if (response.data['code'] >= 200) {
         XLogger.errorHead('START ERROR');
         XLogger.errorBody('║');
         XLogger.errorBody('╟ RESPONSE STATUS CODE: ${response.data['code']}');

@@ -1,5 +1,7 @@
 part of api_service;
 
+class DefaultBaseXHttp extends BaseXHttp {}
+
 /// [BaseXHttp] is abstract class to let external to be override
 /// for certain value
 abstract class BaseXHttp {
