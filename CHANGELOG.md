@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.2.0](https://github.com/haolun1996/baseX/releases/tag/0.2.0) - 2023-08-15
+- New
+    - [DefaultBaseXHttp](https://github.com/haolun1996/baseX/blob/1c724f1b1282603eead9e4652ccf6ee95026fc5c/lib/api_service/http_type_x.dart#L3) class added as abstract class cannot be declared 
+- Changes
+    - http code status > 200 to status >= 200 if required200 set to true at [api_interceptor](https://github.com/haolun1996/baseX/blob/1c724f1b1282603eead9e4652ccf6ee95026fc5c/lib/api_service/api_interceptor.dart#L86) and [api_logger_interceptor](https://github.com/haolun1996/baseX/blob/1c724f1b1282603eead9e4652ccf6ee95026fc5c/lib/api_service/api_logger_interceptor.dart#L90)
+    - required200 set to [false](https://github.com/haolun1996/baseX/blob/1c724f1b1282603eead9e4652ccf6ee95026fc5c/lib/Core/x_get_app.dart#L45C8-L45C19) as default
+    - [DefaultBaseXHttp](https://github.com/haolun1996/baseX/blob/1c724f1b1282603eead9e4652ccf6ee95026fc5c/lib/Core/x_get_app.dart#L90) declared as default
+
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.1.7](https://github.com/haolun1996/baseX/releases/tag/0.1.6) - 2023-07-31
 - Bug Fixes
     - c.page is null
