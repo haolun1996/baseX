@@ -32,7 +32,7 @@ class ApiXService {
     if (customEndpoint != null) {
       _dio.options.baseUrl = customEndpoint;
     } else {
-      _dio.options.baseUrl = baseConstant.baseUrl;
+      _dio.options.baseUrl = kDebugMode ? baseConstant.uatBaseUrl : baseConstant.baseUrl;
     }
 
     _dio.interceptors.addAll([XLoggerInterceptors(), ApiInterceptors()]);
