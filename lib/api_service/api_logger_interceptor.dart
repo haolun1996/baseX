@@ -102,13 +102,7 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
         XLogger.errorBody('║');
         XLogger.errorTail(' END ERROR ');
 
-        return handler.reject(
-          onErrorProcess(
-            response.data['code'],
-            response.data['message'],
-            response.requestOptions,
-          ),
-        );
+        return handler.next(response);
       }
     }
     XLogger.resHead('START RESPONSE');
