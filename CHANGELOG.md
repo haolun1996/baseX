@@ -1,5 +1,26 @@
 # Change Log
 
+## [v0.2.2](https://github.com/haolun1996/baseX/releases/tag/0.2.2) - 2023-09-25
+- Bug Fixes
+    - [XLoggerInterceptors](https://github.com/haolun1996/baseX/blob/main/lib/api_service/api_logger_interceptor.dart) will directly intercep on API request instead of Logger purpose
+        - [onRequest](https://github.com/haolun1996/baseX/blob/fd5d2e94e2c85ca995d1fcca33d21877eafc2431/lib/api_service/api_logger_interceptor.dart#L61)
+        - [onError](https://github.com/haolun1996/baseX/blob/fd5d2e94e2c85ca995d1fcca33d21877eafc2431/lib/api_service/api_logger_interceptor.dart#L83)
+        - onResponse
+            - [success200](https://github.com/haolun1996/baseX/blob/fd5d2e94e2c85ca995d1fcca33d21877eafc2431/lib/api_service/api_logger_interceptor.dart#L105)
+            - [Not success200](https://github.com/haolun1996/baseX/blob/fd5d2e94e2c85ca995d1fcca33d21877eafc2431/lib/api_service/api_logger_interceptor.dart#L115)
+- Changes
+    - add "kDebugMode" to dio [baseUrl](https://github.com/haolun1996/baseX/blob/fd5d2e94e2c85ca995d1fcca33d21877eafc2431/lib/api_service/api.dart#L35) for handling endpoint purpose between debug for uatBaseUrl and release for baseUrl for both mode
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.1](https://github.com/haolun1996/baseX/releases/tag/0.2.1) - 2023-08-15
 - Bug Fixes
     - status code >= 200 should check with status(true | false) at [api_interceptor](https://github.com/haolun1996/baseX/blob/3a16cab9e221aedd22afa3ffe4523be8f5383eff/lib/api_service/api_interceptor.dart#L86) and [api_logger_interceptor](https://github.com/haolun1996/baseX/blob/3a16cab9e221aedd22afa3ffe4523be8f5383eff/lib/api_service/api_logger_interceptor.dart#L90)
