@@ -58,7 +58,7 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
     XLogger.reqBody('║ ');
     XLogger.reqTail(' END REQUEST ');
 
-    return super.onRequest(options, handler);
+    return handler.next(options);
   }
 
   /// Request on error will throw custom Exception Error
@@ -80,7 +80,7 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
     }
     XLogger.errorBody('║');
     XLogger.errorTail(' END ERROR ');
-    return super.onError(err, handler);
+    return handler.next(err);
   }
 
   /// Request on response
@@ -102,13 +102,7 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
         XLogger.errorBody('║');
         XLogger.errorTail(' END ERROR ');
 
-        return handler.reject(
-          onErrorProcess(
-            response.data['code'],
-            response.data['message'],
-            response.requestOptions,
-          ),
-        );
+        return handler.next(response);
       }
     }
     XLogger.resHead('START RESPONSE');
