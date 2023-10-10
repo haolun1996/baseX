@@ -19,7 +19,7 @@ dependencies:
   flutter_hms_gms_availability: ^3.7.0
   device_info_plus: ^9.0.2
   package_info_plus: ^4.0.2
-  get: ^4.6.5
+  get: ^4.6.6
   flutter_local_notifications: ^14.1.2
   intl: ^0.18.0
   path_provider: ^2.0.15

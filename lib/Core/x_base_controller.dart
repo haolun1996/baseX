@@ -66,6 +66,13 @@ abstract class BaseXController<T> extends FullLifeCycleController
     }
   }
 
+  @override
+  void onHidden() {
+    if (kDebugMode) {
+      print('$runtimeType - onHidden called');
+    }
+  }
+
   void onFailedDialog(int code, String msg, dynamic data) {
     if (!(Get.isDialogOpen ?? false)) {
       baseConstant.defaulOnFailedDialog(code, msg);
