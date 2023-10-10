@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.2.3](https://github.com/haolun1996/baseX/releases/tag/0.2.3) - 2023-10-10
+- Changes
+    - Update [GetX](https://github.com/haolun1996/baseX/blob/912e4e3cb15380450f8a2c609dcd11a973f0e1d1/pubspec.yaml#L22) version to 4.6.6
+    - add life cycle [onHidden()](https://github.com/haolun1996/baseX/blob/912e4e3cb15380450f8a2c609dcd11a973f0e1d1/lib/Core/x_base_controller.dart#L69-L74)
+    - [export](https://github.com/haolun1996/baseX/blob/912e4e3cb15380450f8a2c609dcd11a973f0e1d1/lib/base_x.dart#L10) GetX to have same version on dependency
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.2](https://github.com/haolun1996/baseX/releases/tag/0.2.2) - 2023-09-25
 - Bug Fixes
     - [XLoggerInterceptors](https://github.com/haolun1996/baseX/blob/main/lib/api_service/api_logger_interceptor.dart) will directly intercep on API request instead of Logger purpose
