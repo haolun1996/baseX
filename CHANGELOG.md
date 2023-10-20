@@ -1,5 +1,22 @@
 # Change Log
 
+## [v0.2.4](https://github.com/haolun1996/baseX/releases/tag/0.2.4) - 2023-10-20
+- Bug Fixes
+    - put [code](https://github.com/haolun1996/baseX/blob/f009c67d70c4c5b29e9ac89baa30affe662c1567/lib/api_service/api_interceptor.dart#L51-L55) optional function paramter to last
+- Changes
+    - Update [flutter_lints](https://github.com/haolun1996/baseX/blob/f009c67d70c4c5b29e9ac89baa30affe662c1567/pubspec.yaml#L32C3-L32C16) to 3.0.0
+    - export Class or Function ONLY from main class
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.3](https://github.com/haolun1996/baseX/releases/tag/0.2.3) - 2023-10-10
 - Changes
     - Update [GetX](https://github.com/haolun1996/baseX/blob/912e4e3cb15380450f8a2c609dcd11a973f0e1d1/pubspec.yaml#L22) version to 4.6.6
