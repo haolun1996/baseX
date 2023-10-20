@@ -333,6 +333,7 @@ class ApiXService {
 
         break;
     }
+
     onFailed(exec['statusCode'], exec['message'], null);
   }
 }

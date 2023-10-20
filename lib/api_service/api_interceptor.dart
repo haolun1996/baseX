@@ -43,16 +43,16 @@ class ApiInterceptors extends Interceptor with InterceptorMixin {
       case DioErrorType.sendTimeout:
       case DioErrorType.receiveTimeout:
         customError = TimeOutException(
-            errorMsg: err.response?.data['message'],
             requestOptions: err.requestOptions,
+            errorMsg: err.response?.data['message'],
             statusCode: err.response?.statusCode);
         break;
       case DioErrorType.badResponse:
         customError = onErrorProcess(
           err.response?.statusCode,
-          code: err.response?.data['code'],
           err.response?.data['message'],
           err.requestOptions,
+          code: err.response?.data['code'],
         );
         break;
       case DioErrorType.badCertificate:

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_hms_gms_availability/flutter_hms_gms_availability.dart';
 
-import 'package:get/get.dart';
 import 'package:huawei_hmsavailability/huawei_hmsavailability.dart';
 
 import 'package:baseX/base_x.dart';

@@ -1,3 +1,3 @@
-export 'x_picker.dart' show XPicker;
-export 'x_cached_image.dart' show XCachedImage;
-export 'x_skeleton.dart' show XSkeleton;
+export 'x_picker.dart';
+export 'x_cached_image.dart';
+export 'x_skeleton.dart';
