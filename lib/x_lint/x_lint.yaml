@@ -29,6 +29,7 @@ linter:
     use_decorated_box: true
     use_enums: true
     use_named_constants: true
+    prefer_adjacent_string_concatenation: true
 
 analyzer:
   errors:
@@ -48,6 +49,7 @@ analyzer:
     use_enums: warning
     use_named_constants: warning
     avoid_print: warning
+    prefer_adjacent_string_concatenation: error
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
