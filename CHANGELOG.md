@@ -1,5 +1,23 @@
 # Change Log
 
+## [v0.2.5](https://github.com/haolun1996/baseX/releases/tag/0.2.5) - 2023-10-24
+- Changes
+    - hide [MultipartFile](https://github.com/haolun1996/baseX/blob/62707651a3bb248eed29b0b1a88241d654cfcfc6/lib/base_x.dart#L23) from export of getX
+    - XCachedImage widget
+        - deprecated [borderRadius](https://github.com/haolun1996/baseX/blob/62707651a3bb248eed29b0b1a88241d654cfcfc6/lib/x_widget/x_cached_image.dart#L19) with message "Use BoxDecaration instead"
+        - add [ClipBehaviour](https://github.com/haolun1996/baseX/blob/62707651a3bb248eed29b0b1a88241d654cfcfc6/lib/x_widget/x_cached_image.dart#L189) to container on XCacheImage
+    - add new lint of [prefer_adjacent_string_concatenation](https://github.com/haolun1996/baseX/blob/62707651a3bb248eed29b0b1a88241d654cfcfc6/lib/x_lint/x_lint.yaml#L32) for [error](https://github.com/haolun1996/baseX/blob/62707651a3bb248eed29b0b1a88241d654cfcfc6/lib/x_lint/x_lint.yaml#L52)
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.4](https://github.com/haolun1996/baseX/releases/tag/0.2.4) - 2023-10-20
 - Bug Fixes
     - put [code](https://github.com/haolun1996/baseX/blob/f009c67d70c4c5b29e9ac89baa30affe662c1567/lib/api_service/api_interceptor.dart#L51-L55) optional function paramter to last
