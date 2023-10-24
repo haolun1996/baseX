@@ -21,3 +21,5 @@ export 'x_widget/index.dart' show XCachedImage, XPicker, showXPicker, XSkeleton;
 export 'controller/index.dart' show XController, XLangController;
 
 export 'package:get/get.dart' hide Response, FormData, MultipartFile;
+
+export 'package:dio/dio.dart' show MultipartFile;
