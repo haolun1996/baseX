@@ -20,4 +20,4 @@ export 'api_service/index.dart';
 export 'x_widget/index.dart' show XCachedImage, XPicker, showXPicker, XSkeleton;
 export 'controller/index.dart' show XController, XLangController;
 
-export 'package:get/get.dart' hide Response, FormData;
+export 'package:get/get.dart' hide Response, FormData, MultipartFile;

@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:baseX/base_x.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:baseX/base_x.dart';
 
 class XCachedImage extends StatefulWidget {
   XCachedImage({
@@ -15,7 +16,7 @@ class XCachedImage extends StatefulWidget {
     // Loader Color
     this.loaderColor = CupertinoColors.activeBlue,
     // Widget properties
-    this.borderRadius = 0,
+    @Deprecated('Use BoxDecaration instead') this.borderRadius = 0,
     this.defaultBackground = const Color(0xFFE4E5E8),
     this.aspectRatio,
     // Error properties
@@ -107,6 +108,7 @@ class XCachedImage extends StatefulWidget {
   // Loader Color
   final Color loaderColor;
   // Widget properties
+  @Deprecated('Use BoxDecaration instead')
   final double borderRadius;
   final Color defaultBackground;
   final double? aspectRatio;
@@ -160,10 +162,7 @@ class XCachedImageState extends State<XCachedImage> {
               return ClipOval(child: _image(boxConstraints: constraints));
             },
           )
-        : ClipRRect(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            child: _image(),
-          );
+        : _image();
   }
 
   Widget _image({BoxConstraints? boxConstraints}) {
@@ -179,10 +178,15 @@ class XCachedImageState extends State<XCachedImage> {
       height = widget.height;
       width = widget.width;
     }
+
     return Container(
-      decoration: widget.boxDecoration,
+      decoration: widget.boxDecoration ??
+          BoxDecoration(
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+          ),
       height: height,
       width: width,
+      clipBehavior: Clip.antiAlias,
       child: widget.aspectRatio == null
           ? _cachedImage()
           : AspectRatio(
