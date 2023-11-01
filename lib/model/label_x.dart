@@ -1,4 +1,4 @@
-part of model;
+part of 'index.dart';
 
 class XLabel extends XData {
   final String? key;

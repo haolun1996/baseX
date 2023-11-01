@@ -1,4 +1,4 @@
-part of XError;
+part of 'index.dart';
 
 /// Status Code is 401
 /// will throw UnauthorizedException

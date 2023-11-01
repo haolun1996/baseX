@@ -12,3 +12,5 @@ typedef JSONLIST = List<dynamic>;
 typedef AddtionalWidget = Widget Function(Widget child);
 
 GeneralErrorHandle onFailed = ((BuildContext context, code, msg, {tryAgain}) => true);
+
+typedef OnDoneCallBack<T> = void Function(T item);

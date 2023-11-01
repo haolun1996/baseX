@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:baseX/helper/index.dart';
 import 'package:get/get.dart';
 
+import 'package:baseX/Core/x_declaration.dart';
+import 'package:baseX/helper/index.dart';
+import 'package:baseX/model/index.dart';
+
 // ignore: must_be_immutable
-class XPicker<T> extends StatefulWidget {
+class XPicker<T extends XPickerItem> extends StatefulWidget {
   XPicker({
     required this.items,
     required this.selectedItem,
@@ -20,10 +23,10 @@ class XPicker<T> extends StatefulWidget {
 
   final List<T> items;
   final double itemExtent;
-  T? selectedItem;
+  T selectedItem;
   final bool isDismissible;
   final Color? themeColor;
-  final VoidCallback? onDone;
+  final OnDoneCallBack? onDone;
   final VoidCallback? onCancel;
   final EdgeInsets contentPadding;
 
@@ -97,8 +100,10 @@ class _XPickerState<T> extends State<XPicker> {
                 child: InkWell(
                   splashColor: Colors.transparent,
                   onTap: (() {
-                    widget.onDone;
-                    Get.back(result: widget.selectedItem);
+                    if (widget.onDone != null) {
+                      widget.onDone!(widget.selectedItem);
+                    }
+                    Get.back();
                   }),
                   child: Text(
                     'Done',
@@ -124,7 +129,7 @@ class _XPickerState<T> extends State<XPicker> {
                   children: List<Widget>.generate(widget.items.length, (index) {
                     return Center(
                         child: Text(
-                      '${widget.items[index]}',
+                      widget.items[index].value,
                     ));
                   }),
                 ),
@@ -150,12 +155,12 @@ class _XPickerState<T> extends State<XPicker> {
 ///     selectedPicker = result;
 ///   }
 /// ```
-Future<T?> showXPicker<T>(
+Future<T?> showXPicker<T extends XPickerItem>(
   List<T> items,
   T selectedItem, {
   double itemExtend = 50,
-  VoidCallback? done,
-  VoidCallback? cancel,
+  OnDoneCallBack? onDone,
+  VoidCallback? onCancel,
   bool isDismissible = true,
   Color? themeColor,
   EdgeInsets contentPadding = const EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -170,10 +175,16 @@ Future<T?> showXPicker<T>(
     elevation: 3,
     backgroundColor: CupertinoColors.white,
     isDismissible: isDismissible,
-    XPicker(
+    XPicker<T>(
       items: items,
       contentPadding: contentPadding,
       selectedItem: selectedItem,
+      onDone: (item) {
+        if (onDone != null) {
+          onDone(item);
+        }
+      },
+      onCancel: onCancel,
     ),
   );
 }

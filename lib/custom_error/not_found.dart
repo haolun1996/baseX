@@ -1,4 +1,4 @@
-part of XError;
+part of 'index.dart';
 
 /// Status Code is 404
 /// will throw NotFoundException

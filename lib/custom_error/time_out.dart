@@ -1,4 +1,4 @@
-part of XError;
+part of 'index.dart';
 
 /// Status Code is DioErrorType sendTimeout / connectTimeout / receiveTimeout
 /// will throw TimeOutException
