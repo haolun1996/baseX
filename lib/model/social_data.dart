@@ -1,4 +1,4 @@
-part of model;
+part of 'index.dart';
 
 /// [SocialData] used to insert data from social platform and use on api calling
 

@@ -1,4 +1,4 @@
-part of api_service;
+part of 'index.dart';
 
 class ApiInterceptors extends Interceptor with InterceptorMixin {
   // var _cache = <Uri, Response>{};

@@ -1,4 +1,4 @@
-part of api_service;
+part of 'index.dart';
 
 /// [XResponse] is a base response to receive other param exclude data
 class XResponse<T> extends XData {

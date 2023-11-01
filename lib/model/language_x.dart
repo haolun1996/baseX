@@ -1,4 +1,4 @@
-part of model;
+part of 'index.dart';
 
 class XLanguage extends XData {
   final String title;

@@ -1,4 +1,4 @@
-part of api_service;
+part of 'index.dart';
 
 class DefaultBaseXHttp extends BaseXHttp {}
 

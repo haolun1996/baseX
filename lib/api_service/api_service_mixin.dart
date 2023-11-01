@@ -1,4 +1,4 @@
-part of api_service;
+part of 'index.dart';
 
 /// implements [ApiServiceMixin] and make your service class as singleton
 /// with singleton example method below

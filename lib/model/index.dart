@@ -8,3 +8,4 @@ part 'data_x.dart';
 part 'social_data.dart';
 part 'label_x.dart';
 part 'language_x.dart';
+part 'picker_item_x.dart';

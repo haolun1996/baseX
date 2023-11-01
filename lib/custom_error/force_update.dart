@@ -1,4 +1,4 @@
-part of XError;
+part of 'index.dart';
 
 /// Status Code is 426
 /// will throw ForceUpdateException

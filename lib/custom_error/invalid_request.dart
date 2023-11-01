@@ -1,4 +1,4 @@
-part of XError;
+part of 'index.dart';
 
 /// Status Code is 400 will throw InvalidRequestException.
 /// - message from server is not empty will throw error message

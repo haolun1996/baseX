@@ -1,4 +1,4 @@
-part of api_service;
+part of 'index.dart';
 
 enum HttpMethod { get, post, put, delete }
 
