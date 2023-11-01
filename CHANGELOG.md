@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.2.6](https://github.com/haolun1996/baseX/releases/tag/0.2.6) - 2023-11-01
+- Changes
+    - show [MultipartFile](https://github.com/haolun1996/baseX/blob/25e26d2befa816f984fc46eae8a4751ab9f780a9/lib/base_x.dart#L25) from export of dio
+    - XPicker widget
+        - added [XPickerItem](https://github.com/haolun1996/baseX/blob/main/lib/model/picker_item_x.dart)
+        - [Restructure](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_picker.dart)
+    - add new lint of [use_string_in_part_of_directives for error](https://github.com/haolun1996/baseX/blob/f6c3a34beadc28a98af9244750dbf05893148898/lib/x_lint/x_lint.yaml#L53)
+    - All part of library to 'index.dart' eg: [part of 'index.dart';](https://github.com/haolun1996/baseX/blob/f6c3a34beadc28a98af9244750dbf05893148898/lib/model/data_x.dart#L1)
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.5](https://github.com/haolun1996/baseX/releases/tag/0.2.5) - 2023-10-24
 - Changes
     - hide [MultipartFile](https://github.com/haolun1996/baseX/blob/62707651a3bb248eed29b0b1a88241d654cfcfc6/lib/base_x.dart#L23) from export of getX
