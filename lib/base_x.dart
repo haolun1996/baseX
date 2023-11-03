@@ -1,7 +1,16 @@
 library BaseX;
 
 export 'Core/index.dart';
-export 'model/index.dart' show SocialData, XData, XLabel, XLanguage;
+export 'model/index.dart'
+    show
+        SocialData,
+        XData,
+        XLabel,
+        XLanguage,
+        DrawerAction,
+        FloatingAction,
+        XPickerItem,
+        DrawerPosition;
 export 'custom_error/index.dart'
     show
         ForceUpdateException,

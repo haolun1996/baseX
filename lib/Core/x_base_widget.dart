@@ -6,8 +6,6 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 import 'package:baseX/base_x.dart';
 import 'package:baseX/helper/scroll_behaviour.dart';
-import 'package:baseX/model/ui/drawer_action.dart';
-import 'package:baseX/model/ui/floating_action.dart';
 
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   /// make [GetWidget.controller] to [c] as shortcut can be used on class who extended to [BaseXWidget]

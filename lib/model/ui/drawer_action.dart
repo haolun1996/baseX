@@ -1,5 +1,4 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
+part of '../index.dart';
 
 enum DrawerPosition { Left, Right }
 
