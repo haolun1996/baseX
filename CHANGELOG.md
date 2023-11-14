@@ -1,5 +1,20 @@
 # Change Log
 
+## [v0.2.7](https://github.com/haolun1996/baseX/releases/tag/0.2.7) - 2023-11-14
+- Changes
+    - Add [DrawerAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/drawer_action.dart) and [FloatingAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/floating_action.dart) to [part of library](https://github.com/haolun1996/baseX/blob/3618639b184ef496c1419e1a3c81af44c4dbe34c/lib/model/index.dart#L13-L14) of model
+    - Obtain more accurate iPhone [device model](https://github.com/haolun1996/baseX/blob/3618639b184ef496c1419e1a3c81af44c4dbe34c/lib/controller/x_controller.dart#L36) using library [ios_utsname_ext](https://pub.dev/packages/ios_utsname_ext)
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.6](https://github.com/haolun1996/baseX/releases/tag/0.2.6) - 2023-11-01
 - Changes
     - show [MultipartFile](https://github.com/haolun1996/baseX/blob/25e26d2befa816f984fc46eae8a4751ab9f780a9/lib/base_x.dart#L25) from export of dio
