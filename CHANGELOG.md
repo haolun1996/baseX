@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.2.8](https://github.com/haolun1996/baseX/releases/tag/0.2.8) - 2024-06-11
+- Changes
+    - Update [flutter_version](https://github.com/haolun1996/baseX/blob/main/pubspec.yaml) to 3.22.2
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.7](https://github.com/haolun1996/baseX/releases/tag/0.2.7) - 2023-11-14
 - Changes
     - Add [DrawerAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/drawer_action.dart) and [FloatingAction](https://github.com/haolun1996/baseX/blob/main/lib/model/ui/floating_action.dart) to [part of library](https://github.com/haolun1996/baseX/blob/3618639b184ef496c1419e1a3c81af44c4dbe34c/lib/model/index.dart#L13-L14) of model

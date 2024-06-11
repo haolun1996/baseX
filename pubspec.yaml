@@ -3,7 +3,7 @@ description: BaseX Running With Flutter 3.22.2
 
 publish_to: "none"
 
-version: 0.2.7
+version: 0.2.8
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
