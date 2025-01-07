@@ -1,5 +1,22 @@
 # Change Log
 
+## [v0.3.0](https://github.com/haolun1996/baseX/releases/tag/0.3.0) - 2025-01-07
+- Changes
+    - Update [flutter_version](https://github.com/haolun1996/baseX/blob/main/pubspec.yaml) to 3.27.x
+    - Update related plugin to latest version
+    - Add topSafeArea and bottomSafeArea to replace safeArea to be more flexible
+    - Mark safeArea to be deprecated and will remove in next version
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+    - Social Login
+
+<br />
+
+***
+<br />
+
 ## [v0.2.8](https://github.com/haolun1996/baseX/releases/tag/0.2.8) - 2024-06-11
 - Changes
     - Update [flutter_version](https://github.com/haolun1996/baseX/blob/main/pubspec.yaml) to 3.22.2
