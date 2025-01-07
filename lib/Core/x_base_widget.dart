@@ -1,11 +1,9 @@
+import 'package:baseX/base_x.dart';
+import 'package:baseX/helper/scroll_behaviour.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-
-import 'package:baseX/base_x.dart';
-import 'package:baseX/helper/scroll_behaviour.dart';
 
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   /// make [GetWidget.controller] to [c] as shortcut can be used on class who extended to [BaseXWidget]
@@ -13,7 +11,11 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
 
   String get routeName;
 
+  @Deprecated('use topSafeArea and bottomSafeArea instead. Will remove it after version 0.2.9.')
   bool get safeArea => true;
+
+  bool get topSafeArea => false;
+  bool get bottomSafeArea => false;
 
   bool get resizeToAvoidBottomInset => false;
 
@@ -188,7 +190,7 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   Widget _nameOfPageTag() {
     return Positioned(
       left: 5,
-      top: 20.0 + (safeArea ? 0 : Get.mediaQuery.viewPadding.top),
+      top: 20.0 + ((safeArea || topSafeArea) ? 0 : Get.mediaQuery.viewPadding.top),
       child: IgnorePointer(
         child: RotationTransition(
           turns: AlwaysStoppedAnimation(330 / 360),
@@ -253,7 +255,13 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
           },
           child: KeyboardDismissOnTap(
             dismissOnCapturedTaps: true,
-            child: safeArea ? SafeArea(child: _contentBody(context)) : _contentBody(context),
+            child: safeArea || topSafeArea || bottomSafeArea
+                ? SafeArea(
+                    top: topSafeArea,
+                    bottom: bottomSafeArea,
+                    child: _contentBody(context),
+                  )
+                : _contentBody(context),
           ),
         ),
       ),
