@@ -30,6 +30,9 @@ dependencies:
   ios_utsname_ext: ^2.3.0
   map_launcher: ^3.0.0+1
   flutter_svg: ^2.0.16
+  flutter_facebook_auth: ^7.1.1
+  sign_in_with_apple: ^6.1.4
+  google_sign_in: ^6.2.2
 
 dev_dependencies:
   flutter_lints: ^5.0.0
