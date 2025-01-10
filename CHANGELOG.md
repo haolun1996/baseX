@@ -2,15 +2,17 @@
 
 ## [v0.3.0](https://github.com/haolun1996/baseX/releases/tag/0.3.0) - 2025-01-07
 - Changes
-    - Update [flutter_version](https://github.com/haolun1996/baseX/blob/main/pubspec.yaml) to 3.27.x
-    - Update related plugin to latest version
-    - Add topSafeArea and bottomSafeArea to replace safeArea to be more flexible
-    - Mark safeArea to be deprecated and will remove in next version
+    - Update [flutter_version](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/pubspec.yaml#L10) to 3.27.x
+    - Update [related plugin]((https://github.com/haolun1996/baseX/blob/main/pubspec.yaml)) to latest version
+    - Add [topSafeArea and bottomSafeArea](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/Core/x_base_widget.dart#L17-L18) to replace safeArea to be more flexible
+    - Mark [safeArea](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/Core/x_base_widget.dart#L15) to be deprecated and will remove in next version
+    - [Open Map](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_open_map.dart) Feature for app [Google Map](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/x_widget/x_open_map.dart#L22), [Apple Map](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/x_widget/x_open_map.dart#L34), [Waze](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/x_widget/x_open_map.dart#L46), [default platform](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/x_widget/x_open_map.dart#L10) Map and [Map Selection List](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/x_widget/x_open_map.dart#L108) which app installed on device
+    - [Social Login](https://github.com/haolun1996/baseX/blob/main/lib/controller/social_login_service.dart) Feature for [Google](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/controller/social_login_service.dart#L54) Login, [Apple](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/controller/social_login_service.dart#L87) Login(iOS, macOS) and [Facebook](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/lib/controller/social_login_service.dart#L21) Login
+
 - TODO
     - API Caching
     - Endpoint Changing Method
     - Check Permission for Android(12/13)
-    - Social Login
 
 <br />
 
