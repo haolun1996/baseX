@@ -1,6 +1,6 @@
 # Change Log
 
-## [v0.4.0](https://github.com/haolun1996/baseX/releases/tag/0.3.0) - 2025-04-08
+## [v0.4.0](https://github.com/haolun1996/baseX/releases/tag/0.4.0) - 2025-04-08
 - Changes
     - To use [gms_check](https://pub.dev/packages/gms_check) from flutter_hms_gms_availability at [line](https://github.com/haolun1996/baseX/blob/af2395ac3047372079f00001dc7f56d732145e71/pubspec.yaml#L20)
         - init [GmsCheck](https://github.com/haolun1996/baseX/blob/af2395ac3047372079f00001dc7f56d732145e71/lib/Core/x_get_app.dart#L56) at runXApp
