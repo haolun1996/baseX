@@ -1,5 +1,21 @@
 # Change Log
 
+## [v0.4.0](https://github.com/haolun1996/baseX/releases/tag/0.3.0) - 2025-04-08
+- Changes
+    - To use [gms_check](https://pub.dev/packages/gms_check) from flutter_hms_gms_availability at [line](https://github.com/haolun1996/baseX/blob/af2395ac3047372079f00001dc7f56d732145e71/pubspec.yaml#L20)
+        - init [GmsCheck](https://github.com/haolun1996/baseX/blob/af2395ac3047372079f00001dc7f56d732145e71/lib/Core/x_get_app.dart#L56) at runXApp
+        - trigger function [isGmsAvailable](https://github.com/haolun1996/baseX/blob/af2395ac3047372079f00001dc7f56d732145e71/lib/Core/x_constant.dart#L128)
+
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Check Permission for Android(12/13)
+
+<br />
+
+***
+<br />
+
 ## [v0.3.0](https://github.com/haolun1996/baseX/releases/tag/0.3.0) - 2025-01-07
 - Changes
     - Update [flutter_version](https://github.com/haolun1996/baseX/blob/1d4dd8214531ca5e1c3ea5e725e823c0794a7fc5/pubspec.yaml#L10) to 3.27.x
