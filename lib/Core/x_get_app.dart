@@ -1,12 +1,10 @@
+import 'package:baseX/base_x.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'package:dio/dio.dart';
-
-import 'package:baseX/base_x.dart';
+import 'package:gms_check/gms_check.dart';
 
 late DefaultBaseConstant baseConstant;
 late ApiXService defaultService;
@@ -26,7 +24,7 @@ XLangController? defaultLangController;
 /// * [additionalWidget] => Add additional widget before material app
 /// * [required200] => Set api whether always receive http code 200
 /// * [timeOutDurationInSecond] => Set api timeoutDuration to this field in seconds
-void runXApp<T extends XLabel, K extends XLanguage>({
+Future<void> runXApp<T extends XLabel, K extends XLanguage>({
   required String title,
   required ThemeData lightTheme,
   required ThemeData darkTheme,
@@ -48,14 +46,14 @@ void runXApp<T extends XLabel, K extends XLanguage>({
   Function? additionalFunction,
   AddtionalWidget? additionalWidget,
   XLangController<T, K>? langController,
-}) {
+}) async {
   //Check required field
   // assert(!(appLanguage != null && !requireSharePref),
   //     'Required Share Preference to enable App Language');
   assert((Uri.tryParse(staginBaseUrl)?.isAbsolute ?? false), 'Please enter a valid staging url');
   assert((Uri.tryParse(liveBaseUrl)?.isAbsolute ?? false), 'Please enter a valid live url');
 
-  WidgetsFlutterBinding.ensureInitialized();
+  await GmsCheck().checkGmsAvailability();
 
   //Set available orientation
   SystemChrome.setPreferredOrientations(allowOrientationList);
