@@ -1,7 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:baseX/base_x.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -35,8 +35,8 @@ mixin SocialLogin {
 
       return (
         accessToken.tokenString,
-        SocialData.facebook(
-            userData['id'], userData['name'], userData['email'], userData['picture']['data']['url'])
+        SocialData.facebook(userData['id'], userData['name'], userData['email'],
+            userData['picture']['data']['url'])
       );
     } else if (result.status == LoginStatus.cancelled) {
       onfailed(CANCELLED, result.message!, null);
@@ -52,42 +52,41 @@ mixin SocialLogin {
   }
 
   Future<(String, SocialData)?> loginGoogle(OnFail onfailed) async {
-    final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: scopes);
-
-    if (await _googleSignIn.isSignedIn()) {
-      await _googleSignIn.signOut();
-    }
+    await GoogleSignIn.instance.initialize();
 
     try {
-      GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-      GoogleSignInAuthentication? googleAuth = await googleSignInAccount?.authentication;
+      GoogleSignInAccount googleSignInAccount =
+          await GoogleSignIn.instance.authenticate(scopeHint: scopes);
 
-      if (googleSignInAccount != null && googleAuth != null) {
-        return (
-          googleAuth.accessToken!,
-          SocialData.google(googleSignInAccount.id, googleSignInAccount.displayName ?? '',
-              googleSignInAccount.email, googleSignInAccount.photoUrl ?? '')
-        );
-      }
-    } on PlatformException catch (e) {
-      if (e.code == GoogleSignIn.kNetworkError) {
-        onfailed(NETWORK_ERROR, e.message!, null);
-      } else if (e.code == GoogleSignIn.kSignInCanceledError) {
-        onfailed(CANCELLED, e.message!, null);
-      } else if (e.code == GoogleSignIn.kSignInFailedError) {
-        onfailed(FAILED, e.message!, null);
+      final GoogleSignInClientAuthorization authorization =
+          await googleSignInAccount.authorizationClient.authorizeScopes(scopes);
+
+      return (
+        authorization.accessToken,
+        SocialData.google(
+            googleSignInAccount.id,
+            googleSignInAccount.displayName ?? '',
+            googleSignInAccount.email,
+            googleSignInAccount.photoUrl ?? '')
+      );
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        onfailed(CANCELLED, 'Cancelled', null);
       } else {
-        onfailed(UNKNOWN, 'Unknown error', null);
+        onfailed(FAILED, 'Google Sign In Failed: ${e.toString()}', null);
       }
       return null;
+    } catch (e) {
+      onfailed(UNKNOWN, e.toString(), null);
+      return null;
     }
-    return null;
   }
 
   Future<(String, SocialData)?> loginApple(OnFail onfailed) async {
     if (Platform.isIOS || Platform.isMacOS) {
       try {
-        AuthorizationCredentialAppleID credential = await SignInWithApple.getAppleIDCredential(
+        AuthorizationCredentialAppleID credential =
+            await SignInWithApple.getAppleIDCredential(
           scopes: [
             AppleIDAuthorizationScopes.email,
             AppleIDAuthorizationScopes.fullName,
@@ -96,8 +95,8 @@ mixin SocialLogin {
 
         return (
           credential.identityToken!,
-          SocialData.apple(credential.userIdentifier ?? '', credential.familyName ?? '',
-              credential.email ?? '', '')
+          SocialData.apple(credential.userIdentifier ?? '',
+              credential.familyName ?? '', credential.email ?? '', '')
         );
       } on SignInWithAppleAuthorizationException catch (e) {
         if (e.code == AuthorizationErrorCode.notInteractive) {
@@ -112,8 +111,10 @@ mixin SocialLogin {
         return null;
       }
     } else {
-      onfailed(-1, 'Not implementing Apple Sign In other than iOS and macOS', null);
-      throw UnimplementedError('Not implementing Apple Sign In other than iOS and macOS');
+      onfailed(
+          -1, 'Not implementing Apple Sign In other than iOS and macOS', null);
+      throw UnimplementedError(
+          'Not implementing Apple Sign In other than iOS and macOS');
     }
   }
 }

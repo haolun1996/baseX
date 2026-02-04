@@ -1,7 +1,7 @@
 part of 'index.dart';
 
 /// [XError] is base error class to throw for unhandled statusCode return default -1
-abstract class XError extends DioError {
+abstract class XError extends DioException {
   final String? errorMsg;
 
   int? statusCode = -1;

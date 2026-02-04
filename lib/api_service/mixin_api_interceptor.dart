@@ -1,13 +1,14 @@
 part of 'index.dart';
 
 mixin InterceptorMixin {
-  DioError onErrorProcess(
+  DioException onErrorProcess(
     int? statusCode,
     String message,
     RequestOptions requestOptions, {
     int? code,
   }) {
-    XHttpType x = XHttpType.fromValue(statusCode, useCustom: !(baseXHttp.runtimeType == BaseXHttp));
+    XHttpType x = XHttpType.fromValue(statusCode,
+        useCustom: !(baseXHttp.runtimeType == BaseXHttp));
 
     switch (x) {
       case XHttpType.invalidRequest:

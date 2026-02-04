@@ -1,18 +1,15 @@
 import 'package:baseX/base_x.dart';
 import 'package:baseX/helper/scroll_behaviour.dart';
+import 'package:baseX/x_widget/x_keyboard_dismiss_on_tap.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   /// make [GetWidget.controller] to [c] as shortcut can be used on class who extended to [BaseXWidget]
   T get c => controller;
 
   String get routeName;
-
-  @Deprecated('use topSafeArea and bottomSafeArea instead. Will remove it after version 0.2.9.')
-  bool get safeArea => true;
 
   bool get topSafeArea => false;
   bool get bottomSafeArea => false;
@@ -97,7 +94,8 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
 
     return GetPlatform.isIOS
         ? _scaffoldChild(context)
-        : WillPopScope(onWillPop: controller.onBack, child: _scaffoldChild(context));
+        : WillPopScope(
+            onWillPop: controller.onBack, child: _scaffoldChild(context));
   }
 
   Widget _contentBody(BuildContext context) {
@@ -190,7 +188,7 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
   Widget _nameOfPageTag() {
     return Positioned(
       left: 5,
-      top: 20.0 + ((safeArea || topSafeArea) ? 0 : Get.mediaQuery.viewPadding.top),
+      top: 20.0 + (topSafeArea ? 0 : Get.mediaQuery.viewPadding.top),
       child: IgnorePointer(
         child: RotationTransition(
           turns: AlwaysStoppedAnimation(330 / 360),
@@ -224,25 +222,37 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
       () => Scaffold(
         resizeToAvoidBottomInset: resizeToAvoidBottomInset,
         backgroundColor: backgroundColor,
-        floatingActionButton:
-            c.hasFloatingButton.value ? floatingAction?.floatingActionButton : null,
-        floatingActionButtonLocation:
-            c.hasFloatingButton.value ? floatingAction?.floatingActionButtonLocation : null,
-        floatingActionButtonAnimator:
-            c.hasFloatingButton.value ? floatingAction?.floatingActionButtonAnimator : null,
+        floatingActionButton: c.hasFloatingButton.value
+            ? floatingAction?.floatingActionButton
+            : null,
+        floatingActionButtonLocation: c.hasFloatingButton.value
+            ? floatingAction?.floatingActionButtonLocation
+            : null,
+        floatingActionButtonAnimator: c.hasFloatingButton.value
+            ? floatingAction?.floatingActionButtonAnimator
+            : null,
         drawer: c.hasDrawer.value && isDrawerLeft ? drawerAction!.drawer : null,
-        onDrawerChanged: c.hasDrawer.value && isDrawerLeft ? drawerAction!.onDrawerChanged : null,
-        drawerEnableOpenDragGesture:
-            c.hasDrawer.value && isDrawerLeft ? drawerAction!.drawerEnableOpenDragGesture : true,
-        endDrawer: c.hasDrawer.value && !isDrawerLeft ? drawerAction!.drawer : null,
-        onEndDrawerChanged:
-            c.hasDrawer.value && !isDrawerLeft ? drawerAction!.onDrawerChanged : null,
-        endDrawerEnableOpenDragGesture:
-            c.hasDrawer.value && !isDrawerLeft ? drawerAction!.drawerEnableOpenDragGesture : true,
-        drawerDragStartBehavior:
-            c.hasDrawer.value ? drawerAction!.drawerDragStartBehavior : DragStartBehavior.start,
-        drawerEdgeDragWidth: c.hasDrawer.value ? drawerAction!.drawerEdgeDragWidth : null,
-        drawerScrimColor: c.hasDrawer.value ? drawerAction!.drawerScrimColor : null,
+        onDrawerChanged: c.hasDrawer.value && isDrawerLeft
+            ? drawerAction!.onDrawerChanged
+            : null,
+        drawerEnableOpenDragGesture: c.hasDrawer.value && isDrawerLeft
+            ? drawerAction!.drawerEnableOpenDragGesture
+            : true,
+        endDrawer:
+            c.hasDrawer.value && !isDrawerLeft ? drawerAction!.drawer : null,
+        onEndDrawerChanged: c.hasDrawer.value && !isDrawerLeft
+            ? drawerAction!.onDrawerChanged
+            : null,
+        endDrawerEnableOpenDragGesture: c.hasDrawer.value && !isDrawerLeft
+            ? drawerAction!.drawerEnableOpenDragGesture
+            : true,
+        drawerDragStartBehavior: c.hasDrawer.value
+            ? drawerAction!.drawerDragStartBehavior
+            : DragStartBehavior.start,
+        drawerEdgeDragWidth:
+            c.hasDrawer.value ? drawerAction!.drawerEdgeDragWidth : null,
+        drawerScrimColor:
+            c.hasDrawer.value ? drawerAction!.drawerScrimColor : null,
         body: GestureDetector(
           onHorizontalDragDown: (details) {
             controller.horizontalDown = details.localPosition.dx;
@@ -255,7 +265,7 @@ abstract class BaseXWidget<T extends BaseXController> extends GetWidget<T> {
           },
           child: KeyboardDismissOnTap(
             dismissOnCapturedTaps: true,
-            child: safeArea || topSafeArea || bottomSafeArea
+            child: topSafeArea || bottomSafeArea
                 ? SafeArea(
                     top: topSafeArea,
                     bottom: bottomSafeArea,

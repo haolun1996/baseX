@@ -5,16 +5,20 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
 
   /// Request on header
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     Map<String, String?> header = {
       Headers.acceptHeader: Headers.jsonContentType,
       'App-Version': baseConstant.appVersion.value,
       'Os-Type': GetPlatform.isIOS ? 'ios' : 'android',
-      if (defaultLangController != null) 'Label-Version': defaultLangController?.labelVersion,
+      if (defaultLangController != null)
+        'Label-Version': defaultLangController?.labelVersion,
       if (Get.locale != null) 'Accept-Language': Get.locale?.languageCode,
       'Device-Model': baseConstant.deviceModel.value,
-      if (baseConstant.deviceId.value != '') 'Device-ID': baseConstant.deviceId.value,
-      if (baseConstant.osVersion.value != '') 'Os-Version': baseConstant.osVersion.value,
+      if (baseConstant.deviceId.value != '')
+        'Device-ID': baseConstant.deviceId.value,
+      if (baseConstant.osVersion.value != '')
+        'Os-Version': baseConstant.osVersion.value,
       // 'Device-Type': Platform.isIOS ? 'ios' : 'android',
       // 'Version-Type': baseConstant.versionType,
       // 'API-Version': baseConstant.api_version,
@@ -22,7 +26,8 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
 
     if (options.headers.containsKey('headerType')) {
       if (options.headers['headerType'] == HeaderType.authorized && X != null) {
-        options.headers.addAll({HttpHeaders.authorizationHeader: 'Bearer ${X?.accessToken}'});
+        options.headers.addAll(
+            {HttpHeaders.authorizationHeader: 'Bearer ${X?.accessToken}'});
       }
 
       options.headers.remove('headerType');
@@ -48,7 +53,8 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
     XLogger.reqBody('║');
     XLogger.reqBody('╟ ########## BODY ##########');
     if (options.data != null) {
-      final Map<String, dynamic> bodyMap = Map<String, dynamic>.fromEntries(options.data.fields);
+      final Map<String, dynamic> bodyMap =
+          Map<String, dynamic>.fromEntries(options.data.fields);
       XLogger.reqBody('║ ${bodyMap.toString()}');
     } else {
       XLogger.reqBody('║ NO BODY');
@@ -63,12 +69,14 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
 
   /// Request on error will throw custom Exception Error
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     XLogger.errorHead('START ERROR');
     XLogger.errorBody('║');
     XLogger.errorBody('╟ RESPONSE STATUS CODE: ${err.response?.statusCode}');
-    XLogger.errorBody('╟ SERVER STATUS MESSAGE: ${err.response?.statusMessage}');
-    if (err.response?.data.containsKey('code') && err.response?.data['code'] != 40000) {
+    XLogger.errorBody(
+        '╟ SERVER STATUS MESSAGE: ${err.response?.statusMessage}');
+    if (err.response?.data.containsKey('code') &&
+        err.response?.data['code'] != 40000) {
       XLogger.errorBody('╟ CODE: ${err.response?.data['code']}');
     }
     XLogger.errorBody('╟ RAW DATA: ${err.response?.data}');
@@ -91,7 +99,8 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
         XLogger.errorHead('START ERROR');
         XLogger.errorBody('║');
         XLogger.errorBody('╟ RESPONSE STATUS CODE: ${response.data['code']}');
-        XLogger.errorBody('╟ SERVER STATUS MESSAGE: ${response.data['message']}');
+        XLogger.errorBody(
+            '╟ SERVER STATUS MESSAGE: ${response.data['message']}');
         XLogger.errorBody('╟ RAW DATA: ${response.data}');
         // if (err.response?.data != null)
         //   print('ERROR_KEY : ${err.response?.data['error_key']}');
