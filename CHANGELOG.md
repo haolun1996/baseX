@@ -1,5 +1,24 @@
 # Change Log
 
+## [v0.5.0](https://github.com/haolun1996/baseX/releases/tag/0.5.0) - 2026-02-04
+- New
+    - Added [KeyboardDismissOnTap](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_keyboard_dismiss_on_tap.dart) used to dismiss keyboard
+- Changes
+    - Upgrade most of the plugin compatible to flutter version ^3.38.7
+    - Migrate google social login to [7.2.0](https://github.com/haolun1996/baseX/blob/3a00c9c4b9ce6caf8d486403ed7b4ed685a78eff/lib/controller/social_login_service.dart#L54-L83) version 
+    - change [DioError to DioException](https://github.com/haolun1996/baseX/blob/3a00c9c4b9ce6caf8d486403ed7b4ed685a78eff/lib/api_service/api_interceptor.dart#L41C16-L41C28) for dio new version handling on future
+- Remove
+    - [SafeArea], use [topSafeArea,bottomSafeArea](https://github.com/haolun1996/baseX/blob/3a00c9c4b9ce6caf8d486403ed7b4ed685a78eff/lib/Core/x_base_widget.dart#L14-L15) to be more flexible
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Permission Checking
+
+<br />
+
+***
+<br />
+
 ## [v0.4.0](https://github.com/haolun1996/baseX/releases/tag/0.4.0) - 2025-04-08
 - Changes
     - To use [gms_check](https://pub.dev/packages/gms_check) from flutter_hms_gms_availability at [line](https://github.com/haolun1996/baseX/blob/af2395ac3047372079f00001dc7f56d732145e71/pubspec.yaml#L20)
