@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.6.0](https://github.com/haolun1996/baseX/releases/tag/0.6.0) - 2026-04-14
+- New
+    - Added [additionalHeader](https://github.com/haolun1996/baseX/blob/1ac4902a5cf1042135d097be19f7efd7582d6097/lib/api_service/api_interceptor.dart#L27)
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Permission Checking
+
+<br />
+
+***
+<br />
+
 ## [v0.5.0](https://github.com/haolun1996/baseX/releases/tag/0.5.0) - 2026-02-04
 - New
     - Added [KeyboardDismissOnTap](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_keyboard_dismiss_on_tap.dart) used to dismiss keyboard
