@@ -28,6 +28,8 @@ abstract class BaseXConstant {
   Widget get envBar;
   Widget customErrorWidget(FlutterErrorDetails error);
 
+  Map<String, String> get additionalHeader;
+
   FloatingAction? get floatingAction;
   DrawerAction? get drawerAction;
 
@@ -80,6 +82,10 @@ class DefaultBaseConstant extends BaseXConstant {
 
   @override
   Position position = Position.bottom;
+
+  @override
+  Map<String, String> additionalHeader = <String, String>{};
+
 
   @override
   Widget envBar = Container(

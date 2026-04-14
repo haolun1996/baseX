@@ -24,6 +24,8 @@ class XLoggerInterceptors extends Interceptor with InterceptorMixin {
       // 'API-Version': baseConstant.api_version,
     };
 
+    header.addAll(baseConstant.additionalHeader);
+
     if (options.headers.containsKey('headerType')) {
       if (options.headers['headerType'] == HeaderType.authorized && X != null) {
         options.headers.addAll(
