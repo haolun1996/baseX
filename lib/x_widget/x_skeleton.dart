@@ -34,14 +34,13 @@ class XSkeleton extends StatefulWidget {
     Color? startColor = const Color(0xffE6E8EB),
     Color? endColor = const Color(0x77E6E8EB),
     Duration delayInMilliSeconds = Duration.zero,
-  }) =>
-      XSkeleton(
-        height: size,
-        width: size,
-        startColor: startColor,
-        endColor: endColor,
-        shape: BoxShape.circle,
-      );
+  }) => XSkeleton(
+    height: size,
+    width: size,
+    startColor: startColor,
+    endColor: endColor,
+    shape: BoxShape.circle,
+  );
 
   /// Use this to create a square loading widget
   factory XSkeleton.square({
@@ -49,13 +48,7 @@ class XSkeleton extends StatefulWidget {
     Color? startColor = const Color(0xffE6E8EB),
     Color? endColor = const Color(0x77E6E8EB),
     Duration delayInMilliSeconds = Duration.zero,
-  }) =>
-      XSkeleton(
-        height: size,
-        width: size,
-        startColor: startColor,
-        endColor: endColor,
-      );
+  }) => XSkeleton(height: size, width: size, startColor: startColor, endColor: endColor);
 
   /// Use this to create a ratio loading widget
   factory XSkeleton.ratio({
@@ -68,7 +61,9 @@ class XSkeleton extends StatefulWidget {
   }) {
     if (aspectRatio != null) {
       assert(
-          height == null || width == null, 'Either height or width only if Aspect Ratio available');
+        height == null || width == null,
+        'Either height or width only if Aspect Ratio available',
+      );
     }
     return XSkeleton(
       height: height,
@@ -172,11 +167,15 @@ class SkeletonState extends State<XSkeleton> with SingleTickerProviderStateMixin
     super.initState();
 
     // Initializing AnimationController
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
     // ColorTween Animation
-    _colorAnimation =
-        ColorTween(begin: widget.startColor, end: widget.endColor).animate(_animationController);
+    _colorAnimation = ColorTween(
+      begin: widget.startColor,
+      end: widget.endColor,
+    ).animate(_animationController);
 
     // Trigger the animation only after build is rendered
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -213,13 +212,10 @@ class SkeletonState extends State<XSkeleton> with SingleTickerProviderStateMixin
         //       return ClipOval(child: _content(boxConstraints: constraints));
         //     },
         //   )
-        : ClipRRect(
-            borderRadius: BorderRadius.circular(widget.borderRadius),
-            child: _content(),
-          );
+        : ClipRRect(borderRadius: BorderRadius.circular(widget.borderRadius), child: _content());
   }
 
-  Widget _content({BoxConstraints? boxConstraints}) {
+  Widget _content() {
     double? height;
     double? width;
     height = widget.height;
@@ -243,10 +239,7 @@ class SkeletonState extends State<XSkeleton> with SingleTickerProviderStateMixin
       width: width,
       child: widget.aspectRatio == null
           ? _animatedBody()
-          : AspectRatio(
-              aspectRatio: widget.aspectRatio ?? 1,
-              child: _animatedBody(),
-            ),
+          : AspectRatio(aspectRatio: widget.aspectRatio ?? 1, child: _animatedBody()),
     );
   }
 
@@ -257,9 +250,7 @@ class SkeletonState extends State<XSkeleton> with SingleTickerProviderStateMixin
         return Container(
           decoration: BoxDecoration(
             color: _colorAnimation.value,
-            borderRadius: BorderRadius.all(
-              Radius.circular(widget.borderRadius),
-            ),
+            borderRadius: BorderRadius.all(Radius.circular(widget.borderRadius)),
           ),
         );
       },

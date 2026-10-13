@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:baseX/Core/index.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:map_launcher/map_launcher.dart';
 
@@ -13,8 +11,7 @@ Future<void> openXPlatformMaps({
   String? destinationTitle,
 }) async {
   await _openMaps(
-    coords: Coords(latitude, longitude),
-    destinationTitle: destinationTitle,
+    coords: LocationCoords(latitude, longitude, title: destinationTitle),
     usePlatformMap: true,
   );
 }
@@ -25,9 +22,8 @@ Future<void> openXGoogleMaps({
   String? destinationTitle,
 }) async {
   await openXMaps(
-    coords: Coords(latitude, longitude),
-    destinationTitle: destinationTitle,
-    mapType: MapType.google,
+    coords: LocationCoords(latitude, longitude, title: destinationTitle),
+    mapType: MapApp.google,
   );
 }
 
@@ -37,9 +33,8 @@ Future<void> openXAppleMaps({
   String? destinationTitle,
 }) async {
   await openXMaps(
-    coords: Coords(latitude, longitude),
-    destinationTitle: destinationTitle,
-    mapType: MapType.apple,
+    coords: LocationCoords(latitude, longitude, title: destinationTitle),
+    mapType: MapApp.apple,
   );
 }
 
@@ -49,57 +44,35 @@ Future<void> openXWazeMaps({
   String? destinationTitle,
 }) async {
   await openXMaps(
-    coords: Coords(latitude, longitude),
-    destinationTitle: destinationTitle,
-    mapType: MapType.waze,
+    coords: LocationCoords(latitude, longitude, title: destinationTitle),
+    mapType: MapApp.waze,
   );
 }
 
-Future<void> openXMaps({
-  required Coords coords,
-  required MapType mapType,
-  String? destinationTitle,
-}) async {
-  await _openMaps(
-    coords: coords,
-    destinationTitle: destinationTitle,
-    mapType: mapType,
-  );
+Future<void> openXMaps({required LocationCoords coords, required MapApp mapType}) async {
+  await _openMaps(coords: coords, mapType: mapType);
 }
 
 Future<void> _openMaps({
-  required Coords coords,
-  String? destinationTitle,
+  required LocationCoords coords,
   bool usePlatformMap = false,
-  MapType? mapType,
+  MapApp? mapType,
 }) async {
   if (usePlatformMap) {
     if (Platform.isIOS) {
-      await MapLauncher.showDirections(
-        mapType: MapType.apple,
-        destination: coords,
-        destinationTitle: destinationTitle,
-      );
+      await MapLauncher.directions(coords).show(map: MapApp.apple);
     } else if (Platform.isAndroid) {
-      await MapLauncher.showDirections(
-        mapType: MapType.google,
-        destination: coords,
-        destinationTitle: destinationTitle,
-      );
+      await MapLauncher.directions(coords).show(map: MapApp.google);
     }
   } else {
     try {
-      await MapLauncher.showDirections(
-        mapType: mapType!,
-        destination: coords,
-        destinationTitle: destinationTitle,
-      );
-    } on PlatformException catch (e) {
-      XLogger.error('${e.code}: ${e.message}', className: 'x_open_map');
+      await MapLauncher.directions(coords).show(map: mapType!);
+    } on Exception catch (e) {
+      XLogger.error('$e', className: 'x_open_map');
       openXPlatformMaps(
-        latitude: coords.latitude,
-        longitude: coords.longitude,
-        destinationTitle: destinationTitle,
+        latitude: coords.lat,
+        longitude: coords.lng,
+        destinationTitle: coords.title,
       );
     }
   }
@@ -112,43 +85,31 @@ Future<void> showXMapSelection({
   String? title = 'Maps',
   String? message = 'Select your favourite navigation',
 }) async {
-  final List<AvailableMap> availableMaps = await MapLauncher.installedMaps;
+  final DirectionsRequest request = MapLauncher.directions(
+    LocationCoords(latitude, longitude, title: destinationTitle),
+  );
+  final List<SupportedMap> availableMaps = (await request.getSupportedMaps(MapApp.all))
+      .where((map) => map.isInstalled)
+      .toList();
 
   return showCupertinoModalPopup(
     context: Get.context!,
     builder: (BuildContext context) => CupertinoActionSheet(
-      title: title != null
-          ? Text(
-              title,
-              style: TextStyle(fontSize: 14),
-            )
-          : null,
-      message: message != null
-          ? Text(
-              message,
-              style: TextStyle(fontSize: 12),
-            )
-          : null,
+      title: title != null ? Text(title, style: TextStyle(fontSize: 14)) : null,
+      message: message != null ? Text(message, style: TextStyle(fontSize: 12)) : null,
       actions: [
-        for (AvailableMap map in availableMaps)
+        for (SupportedMap map in availableMaps)
           CupertinoActionSheetAction(
-            onPressed: () => {
-              map.showDirections(
-                  destination: Coords(latitude, longitude), destinationTitle: destinationTitle)
-            },
+            onPressed: () => map.show(),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  map.icon,
-                  height: 30,
-                  width: 30,
-                ),
+                Image.memory(map.iconBytes, height: 30, width: 30),
                 SizedBox(width: 12),
-                Text(map.mapName),
+                Text(map.name),
               ],
             ),
-          )
+          ),
       ],
     ),
   );

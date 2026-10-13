@@ -1,1 +1,4 @@
+analyzer:
+  exclude:
+    - build/**
 include: ./lib/x_lint/x_lint.yaml

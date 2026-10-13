@@ -27,8 +27,7 @@ enum XHttpType {
   tooManyRequest(429),
   unauthorized(401),
   validationRequest(422),
-  versionOutdate(409),
-  ;
+  versionOutdate(409);
 
   final int value;
   const XHttpType(this.value);
@@ -60,8 +59,6 @@ enum XHttpType {
         return baseXHttp.validationRequest;
       case XHttpType.versionOutdate:
         return baseXHttp.versionOutdate;
-      case XHttpType.unknown:
-        return baseXHttp.unknown;
       default:
         return XHttpType.unknown.value;
     }
