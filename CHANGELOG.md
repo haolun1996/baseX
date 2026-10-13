@@ -1,5 +1,27 @@
 # Change Log
 
+## [v0.7.0](https://github.com/haolun1996/baseX/releases/tag/0.7.0) - 2026-10-14
+- Changes
+    - Update [flutter_version](https://github.com/haolun1996/baseX/blob/main/pubspec.yaml#L9-L10) to ^3.47.7 (Dart 3.13.5)
+    - Upgrade all [plugins](https://github.com/haolun1996/baseX/blob/main/pubspec.yaml) to latest version compatible with flutter ^3.47.7
+        - Major upgrade: device_info_plus 13, package_info_plus 10, flutter_local_notifications 22, android_id 0.6, cached_network_image 4, map_launcher 6, sign_in_with_apple 8
+    - Handle new [DioExceptionType.transformTimeout](https://github.com/haolun1996/baseX/blob/main/lib/api_service/api_interceptor.dart#L52) as TimeOutException
+    - Migrate [Open Map](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_open_map.dart) to map_launcher 6.0.0
+        - [openXMaps](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_open_map.dart#L52) now uses `LocationCoords` and `MapApp`, `destinationTitle` moved into `LocationCoords(lat, lng, title: ...)` **(Breaking)**
+        - [Map Selection List](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_open_map.dart#L81) uses map_launcher built-in PNG icons instead of SVG
+        - [Fallback to platform map](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_open_map.dart#L70) when any launch exception occurs
+    - Exclude `build/**` from analyzer in [analysis_options](https://github.com/haolun1996/baseX/blob/main/analysis_options.yaml)
+    - Code cleanup for new lint rules in [XHttpType](https://github.com/haolun1996/baseX/blob/main/lib/api_service/http_type_x.dart), [KeyboardDismissOnTap](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_keyboard_dismiss_on_tap.dart) and [XSkeleton](https://github.com/haolun1996/baseX/blob/main/lib/x_widget/x_skeleton.dart)
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Permission Checking
+
+<br />
+
+***
+<br />
+
 ## [v0.6.0](https://github.com/haolun1996/baseX/releases/tag/0.6.0) - 2026-04-14
 - New
     - Added [additionalHeader](https://github.com/haolun1996/baseX/blob/1ac4902a5cf1042135d097be19f7efd7582d6097/lib/api_service/api_interceptor.dart#L27)
