@@ -1,5 +1,19 @@
 # Change Log
 
+## [v0.8.0](https://github.com/haolun1996/baseX/releases/tag/0.8.0) - 2026-10-20
+- New
+    - Added Claude Code [skill](https://github.com/haolun1996/baseX/blob/main/skills/basex/SKILL.md) for baseX usage (app setup, page/controller pattern, routing, API service, error handling, social login, widgets)
+        - Included [framework reference](https://github.com/haolun1996/baseX/blob/main/skills/basex/references/basex-framework.md) for features and requirements
+- TODO
+    - API Caching
+    - Endpoint Changing Method
+    - Permission Checking
+
+<br />
+
+***
+<br />
+
 ## [v0.7.0](https://github.com/haolun1996/baseX/releases/tag/0.7.0) - 2026-10-14
 - Changes
     - Update [flutter_version](https://github.com/haolun1996/baseX/blob/main/pubspec.yaml#L9-L10) to ^3.47.7 (Dart 3.13.5)

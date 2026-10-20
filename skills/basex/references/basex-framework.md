@@ -3,7 +3,7 @@
 This document provides detailed documentation for the baseX framework used in this project.
 
 **Repository:** https://github.com/haolun1996/baseX  
-**Version:** 0.7.0
+**Version:** 0.8.0
 
 ## Overview
 
