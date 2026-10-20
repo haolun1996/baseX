@@ -4,6 +4,7 @@
 - New
     - Added Claude Code [skill](https://github.com/haolun1996/baseX/blob/main/skills/basex/SKILL.md) for baseX usage (app setup, page/controller pattern, routing, API service, error handling, social login, widgets)
         - Included [framework reference](https://github.com/haolun1996/baseX/blob/main/skills/basex/references/basex-framework.md) for features and requirements
+        - Added [install_skill](https://github.com/haolun1996/baseX/blob/main/bin/install_skill.dart) to copy the skill into project `.claude/skills/basex` via `dart run baseX:install_skill`
 - TODO
     - API Caching
     - Endpoint Changing Method
